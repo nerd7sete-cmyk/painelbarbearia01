@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Builder Menu</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#0b141a;
+color:#fff;
+}
+
+.container{
+max-width:500px;
+margin:auto;
+padding:20px;
+}
+
+input{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:10px;
+background:#111;
+color:#fff;
+}
+
+button{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:10px;
+background:#00d4aa;
+font-weight:bold;
+cursor:pointer;
+}
+
+.card{
+background:#1a242c;
+padding:12px;
+margin-top:10px;
+border-radius:10px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.remover{
+background:#ff4d4d;
+padding:6px 10px;
+border-radius:6px;
+cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Builder do Painel</h2>
+
+<input id="titulo" placeholder="Nome do botão">
+<input id="sub" placeholder="Descrição">
+<input id="link" placeholder="Link (ex: clientes.html)">
+
+<button onclick="add()">Adicionar botão</button>
+
+<div id="lista"></div>
+
+</div>
+
+<script>
+
+let menus = JSON.parse(localStorage.getItem("menuPainel")) || [];
+
+function render(){
+
+let lista = document.getElementById("lista");
+lista.innerHTML = "";
+
+menus.forEach((m,i)=>{
+
+lista.innerHTML += `
+<div class="card">
+<div>
+<strong>${m.titulo}</strong><br>
+<small>${m.sub}</small>
+</div>
+
+<div class="remover" onclick="remover(${i})">X</div>
+</div>
+`;
+
+});
+
+}
+
+function add(){
+
+let titulo = document.getElementById("titulo").value;
+let sub = document.getElementById("sub").value;
+let link = document.getElementById("link").value;
+
+if(!titulo || !link){
+alert("Preencha tudo");
+return;
+}
+
+menus.push({ titulo, sub, link });
+
+localStorage.setItem("menuPainel", JSON.stringify(menus));
+
+render();
+
+document.getElementById("titulo").value="";
+document.getElementById("sub").value="";
+document.getElementById("link").value="";
+}
+
+function remover(i){
+menus.splice(i,1);
+localStorage.setItem("menuPainel", JSON.stringify(menus));
+render();
+}
+
+render();
+
+</script>
+
+</body>
+</html>

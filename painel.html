@@ -1,0 +1,324 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Painel PRO</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#0b141a;
+color:#fff;
+}
+
+.container{
+max-width:480px;
+margin:auto;
+padding:16px;
+}
+
+/* HEADER */
+.topo{
+background: linear-gradient(145deg,#1a242c,#111b21);
+padding:18px;
+border-radius:18px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+border:1px solid rgba(255,255,255,0.05);
+box-shadow:
+0 8px 25px rgba(0,0,0,0.6),
+inset 0 0 10px rgba(255,255,255,0.02);
+}
+
+.user{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.avatar{
+width:54px;
+height:54px;
+border-radius:50%;
+background:linear-gradient(145deg,#00ff88,#00c96b);
+display:flex;
+align-items:center;
+justify-content:center;
+color:#000;
+font-weight:bold;
+font-size:18px;
+}
+
+.nome{
+font-size:18px;
+font-weight:700;
+}
+
+.sub{
+font-size:12px;
+opacity:0.7;
+}
+
+.logout{
+background:#0f1720;
+border:1px solid rgba(255,255,255,0.1);
+color:#fff;
+padding:10px 14px;
+border-radius:12px;
+cursor:pointer;
+font-size:12px;
+transition:0.3s;
+}
+
+/* 🔥 QUANDO CLICAR */
+.logout.ativo{
+background:#ff3b3b;
+border-color:#ff3b3b;
+transform:scale(0.95);
+}
+
+/* GRID */
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:16px;
+}
+
+/* CARD */
+.card{
+padding:18px;
+border-radius:20px;
+background: linear-gradient(145deg,#1a242c,#111b21);
+border:1px solid rgba(255,255,255,0.05);
+cursor:pointer;
+transition: all 0.25s ease;
+display:flex;
+gap:10px;
+align-items:center;
+position:relative;
+}
+
+.card:hover{
+transform: translateY(-5px);
+}
+
+.card::after{
+content:"";
+position:absolute;
+bottom:0;
+left:0;
+width:100%;
+height:2px;
+background:linear-gradient(90deg,#00ff88,#00c96b);
+opacity:0.5;
+}
+
+/* ÍCONE */
+.icon{
+width:34px;
+height:34px;
+display:flex;
+align-items:center;
+justify-content:center;
+opacity:0.8;
+}
+
+.icon svg{
+width:18px;
+height:18px;
+stroke:#fff;
+stroke-width:2;
+fill:none;
+}
+
+/* TEXTO */
+.texto{
+display:flex;
+flex-direction:column;
+}
+
+.titulo{
+font-size:14px;
+font-weight:600;
+}
+
+.subinfo{
+font-size:12px;
+opacity:0.7;
+margin-top:4px;
+}
+
+.valor{
+color:#00ff88;
+font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="topo">
+
+<div class="user">
+<div class="avatar" id="iniciais">B</div>
+<div>
+<div class="nome" id="saudacao">Carregando...</div>
+<div class="sub">Painel profissional</div>
+</div>
+</div>
+
+<button class="logout" onclick="logout()">Sair</button>
+
+</div>
+
+<div class="grid" id="grid"></div>
+
+</div>
+
+<script>
+
+function ir(pagina){
+window.location.href = pagina;
+}
+
+function logout(){
+
+let btn = document.querySelector(".logout");
+
+// 🔥 efeito vermelho
+btn.classList.add("ativo");
+btn.innerText = "Saindo...";
+
+setTimeout(()=>{
+
+localStorage.removeItem("barbeiroAtual");
+window.location.href = "login.html";
+
+}, 600);
+
+}
+
+//////////////////////////////////////////////////
+// 🔥 DADOS
+//////////////////////////////////////////////////
+
+let dados = JSON.parse(localStorage.getItem("barbeiros")) || [];
+let id = localStorage.getItem("barbeiroAtual");
+let b = dados.find(x => x.id == id) || { nome:"Barbeiro", agendamentos:[], servicos:[] };
+
+//////////////////////////////////////////////////
+// 🔥 MENUS DO BUILDER
+//////////////////////////////////////////////////
+
+let menus = JSON.parse(localStorage.getItem("menuPainel"));
+
+if(!menus){
+menus = [
+{ titulo:"Pendentes", sub:"0 aguardando", link:"pendentes.html" },
+{ titulo:"Faturamento", sub:"R$ 0 hoje", link:"faturamento.html" },
+{ titulo:"Horários", sub:"Agenda disponível", link:"horarios.html" },
+{ titulo:"Clientes", sub:"Lista de clientes", link:"clientes.html" },
+{ titulo:"Link", sub:"Divulgar link", link:"link.html" },
+{ titulo:"Mensagens", sub:"Automação ativa", link:"mensagem.html" },
+{ titulo:"Serviços", sub:"Editar serviços", link:"servicos-planos.html" },
+{ titulo:"Plano", sub:"Gerenciar plano", link:"card-plano.html" },
+{ titulo:"Assinatura", sub:"Renovar assinatura", link:"renovacao.html" },
+{ titulo:"Fidelidade", sub:"Programa ativo", link:"fidelidade.html" }
+];
+localStorage.setItem("menuPainel", JSON.stringify(menus));
+}
+
+//////////////////////////////////////////////////
+// 🔥 RENDER MENU
+//////////////////////////////////////////////////
+
+function renderMenu(){
+
+let grid = document.getElementById("grid");
+grid.innerHTML = "";
+
+menus.forEach(m=>{
+
+let card = document.createElement("div");
+card.className = "card";
+card.onclick = ()=> ir(m.link);
+
+card.innerHTML = `
+<div class="icon">
+<svg viewBox="0 0 24 24">
+<circle cx="12" cy="12" r="10"/>
+</svg>
+</div>
+
+<div class="texto">
+<div class="titulo">${m.titulo}</div>
+<div class="subinfo ${m.titulo === 'Faturamento' ? 'valor' : ''}">${m.sub}</div>
+</div>
+`;
+
+grid.appendChild(card);
+
+});
+
+}
+
+//////////////////////////////////////////////////
+// 🔥 FUNÇÕES
+//////////////////////////////////////////////////
+
+function renderSaudacao(){
+let nome = b.nome || "Barbeiro";
+let h = new Date().getHours();
+
+let saudacao =
+h < 12 ? "Bom dia" :
+h < 18 ? "Boa tarde" :
+"Boa noite";
+
+document.getElementById("saudacao").innerText = `${saudacao}, ${nome}`;
+document.getElementById("iniciais").innerText = nome.charAt(0).toUpperCase();
+}
+
+function renderPendentes(){
+let pendentes = (b.agendamentos || []).filter(a=>a.status !== "aprovado");
+
+let menu = menus.find(m=>m.titulo === "Pendentes");
+if(menu) menu.sub = `${pendentes.length} aguardando`;
+}
+
+function renderFaturamento(){
+let hoje = new Date().toDateString();
+let total = 0;
+
+(b.agendamentos || []).forEach(a=>{
+let d = new Date(a.data).toDateString();
+if(d === hoje && a.status === "aprovado"){
+let s = (b.servicos || []).find(x=>x.nome===a.servico);
+if(s) total += Number(s.preco || 0);
+}
+});
+
+let menu = menus.find(m=>m.titulo === "Faturamento");
+if(menu) menu.sub = `R$ ${total.toFixed(2)} hoje`;
+}
+
+//////////////////////////////////////////////////
+// 🔥 INIT
+//////////////////////////////////////////////////
+
+renderSaudacao();
+renderPendentes();
+renderFaturamento();
+renderMenu();
+
+</script>
+
+</body>
+</html>

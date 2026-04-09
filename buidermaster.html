@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+
+<title>Builder Master</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#0b141a;
+color:#fff;
+}
+
+.container{
+max-width:480px;
+margin:auto;
+padding:16px;
+}
+
+/* HEADER */
+.topo{
+background:#111b21;
+padding:16px;
+border-radius:16px;
+margin-bottom:16px;
+}
+
+input{
+width:100%;
+padding:12px;
+margin:6px 0;
+border-radius:12px;
+border:none;
+background:#1a242c;
+color:#fff;
+}
+
+button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:12px;
+background:#ffd700;
+color:#000;
+margin-top:8px;
+font-weight:bold;
+}
+
+.card{
+background:#1a242c;
+padding:12px;
+border-radius:12px;
+margin-top:10px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="topo">
+<b>Builder Master 👑</b>
+</div>
+
+<input id="titulo" placeholder="Nome do botão">
+<input id="link" placeholder="Link (ex: barbeiros.html)">
+
+<button onclick="add()">Adicionar</button>
+
+<div id="lista"></div>
+
+</div>
+
+<script>
+
+let menus = JSON.parse(localStorage.getItem("menuMaster")) || [];
+
+function render(){
+
+let lista = document.getElementById("lista");
+lista.innerHTML = "";
+
+menus.forEach((m,i)=>{
+
+let div = document.createElement("div");
+div.className = "card";
+
+div.innerHTML = `
+${m.titulo}
+<button onclick="remover(${i})">X</button>
+`;
+
+lista.appendChild(div);
+
+});
+
+}
+
+function add(){
+
+let t = titulo.value;
+let l = link.value;
+
+if(!t || !l) return;
+
+menus.push({titulo:t, link:l});
+
+localStorage.setItem("menuMaster", JSON.stringify(menus));
+
+render();
+}
+
+function remover(i){
+menus.splice(i,1);
+localStorage.setItem("menuMaster", JSON.stringify(menus));
+render();
+}
+
+render();
+
+</script>
+
+</body>
+</html>
