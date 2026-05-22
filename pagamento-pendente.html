@@ -1,0 +1,609 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+<meta charset="UTF-8"/>
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+
+<title>Pagamento Pendente</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+rel="stylesheet"
+/>
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+/>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
+}
+
+body{
+background:#efefef;
+font-family:'Roboto',sans-serif;
+max-width:430px;
+margin:auto;
+overflow-x:hidden;
+color:#222;
+}
+
+/* HEADER */
+
+.top{
+position:relative;
+background:
+linear-gradient(
+135deg,
+#ff5c3b,
+#ff6232,
+#ff4d2d
+);
+padding:18px 14px 22px;
+overflow:hidden;
+}
+
+.top::before{
+content:'';
+position:absolute;
+width:320px;
+height:320px;
+border-radius:50%;
+background:rgba(255,255,255,.05);
+top:-120px;
+left:-120px;
+}
+
+.top::after{
+content:'';
+position:absolute;
+width:260px;
+height:260px;
+border-radius:50%;
+background:rgba(255,255,255,.04);
+bottom:-100px;
+right:-80px;
+}
+
+.header{
+display:flex;
+align-items:center;
+justify-content:space-between;
+position:relative;
+z-index:2;
+}
+
+.back{
+font-size:24px;
+color:#fff;
+cursor:pointer;
+}
+
+.cart{
+position:relative;
+font-size:22px;
+color:#fff;
+}
+
+.badge{
+position:absolute;
+top:-7px;
+right:-8px;
+width:18px;
+height:18px;
+border-radius:50%;
+background:#ff3b30;
+color:#fff;
+font-size:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+border:2px solid #ff5c3b;
+}
+
+/* STATUS */
+
+.status{
+position:relative;
+z-index:2;
+margin-top:42px;
+text-align:center;
+color:#fff;
+}
+
+.status-icon{
+font-size:34px;
+margin-bottom:12px;
+}
+
+.status-title{
+font-size:20px;
+font-weight:700;
+}
+
+.status-text{
+margin-top:12px;
+font-size:15px;
+line-height:23px;
+padding:0 12px;
+opacity:.97;
+}
+
+/* ACTIONS */
+
+.actions{
+display:flex;
+gap:10px;
+margin-top:26px;
+position:relative;
+z-index:2;
+}
+
+.action-btn{
+flex:1;
+height:46px;
+border-radius:10px;
+border:1px solid rgba(255,255,255,.8);
+background:transparent;
+color:#fff;
+font-size:16px;
+font-weight:500;
+cursor:pointer;
+}
+
+/* SECTION */
+
+.section{
+padding:10px 0 90px;
+}
+
+/* BANNER */
+
+.banner{
+width:100%;
+height:210px;
+object-fit:cover;
+border-radius:18px;
+background:#fff;
+display:block;
+}
+
+/* TITLE */
+
+.suggest-title{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:12px;
+margin:18px 0 14px;
+}
+
+.line{
+width:54px;
+height:1px;
+background:#d9d9d9;
+}
+
+.suggest-title span{
+font-size:15px;
+color:#444;
+}
+
+/* PRODUCTS */
+
+.products{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:8px;
+padding:0 8px;
+}
+
+.product{
+background:#fff;
+overflow:hidden;
+}
+
+.product-image{
+position:relative;
+width:100%;
+aspect-ratio:1/1;
+background:#f5f5f5;
+overflow:hidden;
+}
+
+.product-image img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:block;
+}
+
+.discount{
+position:absolute;
+top:0;
+right:0;
+background:#fff0ec;
+color:#ff5a36;
+font-size:12px;
+padding:4px 6px;
+font-weight:500;
+}
+
+.product-info{
+padding:8px;
+}
+
+.tags{
+display:flex;
+gap:4px;
+margin-bottom:6px;
+flex-wrap:wrap;
+}
+
+.tag{
+height:18px;
+padding:0 5px;
+border-radius:3px;
+background:#ff5a36;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:11px;
+color:#fff;
+}
+
+.product-title2{
+font-size:13px;
+line-height:18px;
+height:36px;
+overflow:hidden;
+color:#333;
+}
+
+.rating{
+margin-top:8px;
+display:flex;
+align-items:center;
+gap:4px;
+font-size:12px;
+color:#555;
+}
+
+.rating-box{
+height:20px;
+padding:0 6px;
+border:1px solid #f5d27d;
+background:#fff8df;
+display:flex;
+align-items:center;
+gap:3px;
+color:#d79d00;
+border-radius:2px;
+}
+
+.price{
+margin-top:10px;
+font-size:18px;
+color:#ee4d2d;
+font-weight:500;
+}
+
+.sold{
+margin-top:6px;
+font-size:12px;
+color:#666;
+}
+
+/* FOOTER */
+
+.footer-space{
+height:40px;
+}
+
+::-webkit-scrollbar{
+display:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- TOPO -->
+
+<div class="top">
+
+<div class="header">
+
+<div class="back">
+<i class="fa-solid fa-arrow-left"></i>
+</div>
+
+<div class="cart">
+
+<i class="fa-solid fa-cart-shopping"></i>
+
+<div class="badge">
+10
+</div>
+
+</div>
+
+</div>
+
+<div class="status">
+
+<div class="status-icon">
+<i class="fa-solid fa-circle-exclamation"></i>
+</div>
+
+<div class="status-title">
+Pagamento Pendente
+</div>
+
+<div
+class="status-text"
+id="statusText"
+>
+Por favor, realize o pagamento.
+</div>
+
+<div class="actions">
+
+<button class="action-btn" id="homeBtn">
+Início
+</button>
+
+<button class="action-btn" id="ordersBtn">
+Minhas compras
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- CONTEÚDO -->
+
+<div class="section">
+
+<img
+class="banner"
+src="https://i.imgur.com/TL8YxL5.jpeg"
+/>
+
+<div class="suggest-title">
+
+<div class="line"></div>
+
+<span>
+Você Também Pode Gostar
+</span>
+
+<div class="line"></div>
+
+</div>
+
+<div
+class="products"
+id="products"
+>
+</div>
+
+<div class="footer-space"></div>
+
+</div>
+
+<script>
+
+/* ==================================== */
+/* PRODUTO PRINCIPAL */
+/* ==================================== */
+
+const produto =
+JSON.parse(
+localStorage.getItem("produtoShopee")
+) || {};
+
+const compra =
+JSON.parse(
+localStorage.getItem("compraShopee")
+) || {};
+
+/* ==================================== */
+/* TEXTO */
+/* ==================================== */
+
+const total =
+compra.total || "106,13";
+
+const data =
+new Date();
+
+const vencimento =
+`${String(data.getDate()).padStart(2,"0")}-${String(data.getMonth()+1).padStart(2,"0")}-${data.getFullYear()+1}`;
+
+document.getElementById("statusText")
+.innerHTML = `
+Por favor, realize o pagamento de
+R$${total}
+antes de ${vencimento}.
+Caso já tenha pago, o processamento pode levar até 1h.
+`;
+
+/* ==================================== */
+/* PRODUTOS */
+/* ==================================== */
+
+const products =
+document.getElementById("products");
+
+const listaProdutos = [
+
+{
+titulo:produto.nome || "2025 Magsafe Techtecido Caso Para iPhone",
+preco:produto.preco || "64,99",
+imagem:produto.fotoPrincipal || "https://i.imgur.com/Uxq6xYx.jpeg",
+desconto:"-48%",
+nota:"4.8",
+vendidos:"1mil+ Vendido(s)"
+},
+
+{
+titulo:"Kit 6 Corrediças Gaveta Trilho Telescópica",
+preco:"23,90",
+imagem:"https://i.imgur.com/2M0jP4V.jpeg",
+desconto:"-42%",
+nota:"4.9",
+vendidos:"10mil+ Vendido(s)"
+},
+
+{
+titulo:"Luminária LED Inteligente RGB Premium",
+preco:"59,90",
+imagem:"https://i.imgur.com/L4S7X6K.jpeg",
+desconto:"-52%",
+nota:"4.7",
+vendidos:"3mil+ Vendido(s)"
+},
+
+{
+titulo:"Fone Bluetooth Gamer Baixa Latência",
+preco:"89,90",
+imagem:"https://i.imgur.com/yg5Xq9C.jpeg",
+desconto:"-33%",
+nota:"4.9",
+vendidos:"5mil+ Vendido(s)"
+}
+
+];
+
+/* ==================================== */
+/* RENDER */
+/* ==================================== */
+
+listaProdutos.forEach(item=>{
+
+const div =
+document.createElement("div");
+
+div.className =
+"product";
+
+div.innerHTML = `
+
+<div class="product-image">
+
+<img src="${item.imagem}">
+
+<div class="discount">
+${item.desconto}
+</div>
+
+</div>
+
+<div class="product-info">
+
+<div class="tags">
+
+<div class="tag">
+Indicado
+</div>
+
+</div>
+
+<div class="product-title2">
+${item.titulo}
+</div>
+
+<div class="rating">
+
+<div class="rating-box">
+
+<i class="fa-solid fa-star"></i>
+
+${item.nota}
+
+</div>
+
+</div>
+
+<div class="price">
+R$${item.preco}
+</div>
+
+<div class="sold">
+${item.vendidos}
+</div>
+
+</div>
+
+`;
+
+products.appendChild(div);
+
+});
+
+/* ==================================== */
+/* BOTÕES */
+/* ==================================== */
+
+document.querySelector(".back")
+.addEventListener("click", ()=>{
+
+history.back();
+
+});
+
+document.getElementById("homeBtn")
+.addEventListener("click", ()=>{
+
+window.location.href =
+"index.html";
+
+});
+
+document.getElementById("ordersBtn")
+.addEventListener("click", ()=>{
+
+window.location.href =
+"compras.html";
+
+});
+
+/* ==================================== */
+/* CLICK PRODUTO */
+/* ==================================== */
+
+document.querySelectorAll(".product")
+.forEach(card=>{
+
+card.addEventListener("click", ()=>{
+
+window.location.href =
+"produto.html";
+
+});
+
+});
+
+</script>
+
+</body>
+</html>

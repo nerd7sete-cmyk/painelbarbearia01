@@ -1,0 +1,736 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+<meta charset="UTF-8"/>
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+
+<title>Avaliações</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+rel="stylesheet"
+/>
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+/>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
+}
+
+body{
+background:#f5f5f5;
+font-family:'Roboto',sans-serif;
+max-width:430px;
+margin:auto;
+overflow-x:hidden;
+color:#222;
+}
+
+/* HEADER */
+
+.header{
+position:fixed;
+top:0;
+left:50%;
+transform:translateX(-50%);
+width:100%;
+max-width:430px;
+height:56px;
+background:#fff;
+display:flex;
+align-items:center;
+padding:0 14px;
+z-index:999999;
+border-bottom:1px solid #ededed;
+}
+
+.back{
+font-size:24px;
+color:#ee4d2d;
+cursor:pointer;
+}
+
+.header-title{
+margin-left:18px;
+font-size:18px;
+font-weight:500;
+}
+
+.header-icons{
+margin-left:auto;
+display:flex;
+align-items:center;
+gap:18px;
+}
+
+.header-icons i{
+font-size:24px;
+color:#ee4d2d;
+}
+
+.cart{
+position:relative;
+}
+
+.badge{
+position:absolute;
+top:-6px;
+right:-6px;
+width:17px;
+height:17px;
+border-radius:50%;
+background:#ff3b30;
+color:#fff;
+font-size:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:500;
+}
+
+/* CONTENT */
+
+.content{
+padding-top:56px;
+padding-bottom:72px;
+}
+
+/* TABS */
+
+.tabs{
+display:flex;
+background:#fff;
+border-bottom:1px solid #ededed;
+}
+
+.tab{
+flex:1;
+height:56px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:15px;
+color:#333;
+position:relative;
+white-space:nowrap;
+}
+
+.tab.active{
+color:#ee4d2d;
+font-weight:500;
+}
+
+.tab.active::after{
+content:'';
+position:absolute;
+bottom:0;
+left:0;
+width:100%;
+height:2px;
+background:#ee4d2d;
+}
+
+/* FILTERS */
+
+.filters{
+display:flex;
+gap:8px;
+overflow:auto;
+padding:12px 10px 10px;
+background:#fff;
+}
+
+.filters::-webkit-scrollbar{
+display:none;
+}
+
+.filter{
+min-width:124px;
+height:64px;
+border:1px solid #ededed;
+border-radius:8px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+background:#fff;
+font-size:14px;
+color:#333;
+}
+
+.filter span{
+margin-top:4px;
+font-size:11px;
+color:#999;
+}
+
+.filter.active{
+border:1px solid #ee4d2d;
+color:#ee4d2d;
+background:#fffaf8;
+}
+
+/* SEARCH */
+
+.search-wrap{
+display:flex;
+align-items:center;
+gap:8px;
+padding:0 10px 12px;
+background:#fff;
+}
+
+.search{
+flex:1;
+height:42px;
+border:1px solid #ededed;
+border-radius:24px;
+display:flex;
+align-items:center;
+padding:0 14px;
+gap:10px;
+background:#fff;
+}
+
+.search i{
+font-size:17px;
+color:#888;
+}
+
+.search input{
+width:100%;
+border:none;
+outline:none;
+background:none;
+font-size:15px;
+color:#666;
+}
+
+.gallery-btn{
+display:flex;
+align-items:center;
+gap:6px;
+font-size:15px;
+color:#ee4d2d;
+white-space:nowrap;
+}
+
+.gallery-btn i{
+font-size:19px;
+}
+
+/* GRID */
+
+.reviews-grid{
+padding:8px 8px 0;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:8px;
+}
+
+/* CARD */
+
+.card{
+background:#fff;
+border-radius:4px;
+overflow:hidden;
+}
+
+.media{
+position:relative;
+aspect-ratio:1/1;
+background:#eee;
+overflow:hidden;
+}
+
+.media img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:block;
+}
+
+.video-time{
+position:absolute;
+bottom:6px;
+right:6px;
+background:rgba(0,0,0,.65);
+padding:2px 6px;
+border-radius:4px;
+font-size:11px;
+color:#fff;
+}
+
+.gallery-count{
+position:absolute;
+bottom:6px;
+right:6px;
+background:rgba(0,0,0,.55);
+padding:4px 6px;
+border-radius:5px;
+font-size:13px;
+color:#fff;
+display:flex;
+align-items:center;
+gap:4px;
+}
+
+.card-content{
+padding:8px;
+}
+
+.review-text{
+font-size:15px;
+line-height:24px;
+height:50px;
+overflow:hidden;
+display:-webkit-box;
+-webkit-line-clamp:2;
+-webkit-box-orient:vertical;
+color:#333;
+}
+
+.stars-row{
+margin-top:7px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+
+.stars{
+display:flex;
+gap:1px;
+}
+
+.stars i{
+font-size:13px;
+color:#ffb400;
+}
+
+.likes{
+display:flex;
+align-items:center;
+gap:4px;
+font-size:13px;
+color:#999;
+}
+
+/* FOOTER */
+
+.footer{
+position:fixed;
+left:50%;
+transform:translateX(-50%);
+bottom:0;
+width:100%;
+max-width:430px;
+height:60px;
+display:flex;
+z-index:999999;
+}
+
+.chat-btn{
+width:50%;
+background:#26aa99;
+border:none;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:12px;
+color:#fff;
+font-size:17px;
+}
+
+.chat-btn i{
+font-size:24px;
+}
+
+.buy-btn{
+width:50%;
+background:#ee4d2d;
+border:none;
+color:#fff;
+font-size:17px;
+font-weight:500;
+}
+
+/* SCROLL */
+
+::-webkit-scrollbar{
+display:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<div class="header">
+
+<div class="back">
+<i class="fa-solid fa-arrow-left"></i>
+</div>
+
+<div class="header-title">
+Avaliações
+</div>
+
+<div class="header-icons">
+
+<div class="cart">
+
+<i class="fa-solid fa-cart-shopping"></i>
+
+<div class="badge">
+10
+</div>
+
+</div>
+
+<i class="fa-regular fa-comment-dots"></i>
+
+</div>
+
+</div>
+
+<!-- CONTENT -->
+
+<div class="content">
+
+<!-- TABS -->
+
+<div class="tabs">
+
+<div class="tab active">
+Avaliações do produto
+</div>
+
+<div class="tab">
+Avaliações da Loja
+</div>
+
+</div>
+
+<!-- FILTERS -->
+
+<div class="filters">
+
+<div class="filter">
+Tudo
+<span>(2mil)</span>
+</div>
+
+<div class="filter active">
+Com Mídia
+<span>(389)</span>
+</div>
+
+<div class="filter">
+Estrela ⭐
+<span>Tudo</span>
+</div>
+
+</div>
+
+<!-- SEARCH -->
+
+<div class="search-wrap">
+
+<div class="search">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+type="text"
+placeholder="Busque por palavras em outras avaliações"
+/>
+
+</div>
+
+<div class="gallery-btn">
+
+<i class="fa-regular fa-image"></i>
+
+<div>
+Galeria
+</div>
+
+</div>
+
+</div>
+
+<!-- GRID -->
+
+<div
+class="reviews-grid"
+id="reviewsGrid"
+></div>
+
+</div>
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+<button class="chat-btn">
+
+<i class="fa-regular fa-comment-dots"></i>
+
+</button>
+
+<button class="buy-btn">
+Compre agora
+</button>
+
+</div>
+
+<script>
+
+/* ===================================== */
+/* PRODUTO */
+/* ===================================== */
+
+const produto =
+JSON.parse(
+localStorage.getItem("produtoShopee")
+) || {};
+
+/* ===================================== */
+/* REVIEWS */
+/* ===================================== */
+
+let reviews =
+produto.reviews || [];
+
+/* ===================================== */
+/* FALLBACK */
+/* ===================================== */
+
+if(reviews.length === 0){
+
+reviews = [
+
+{
+texto:
+"Chegou antes do prazo, aparelho de ótima qualidade.",
+
+likes:40,
+
+video:"0:16",
+
+fotos:[
+"https://i.imgur.com/7w0L4X8.jpeg"
+]
+},
+
+{
+texto:
+"Perfeito! Como esperado. Chegou rápido.",
+
+likes:19,
+
+galeria:1,
+
+fotos:[
+"https://i.imgur.com/uM7P6Kj.jpeg"
+]
+},
+
+{
+texto:
+"Chegou certinho, bem embalado e envio rápido.",
+
+likes:12,
+
+galeria:2,
+
+fotos:[
+"https://i.imgur.com/1R9l4Jx.jpeg"
+]
+},
+
+{
+texto:
+"Bom vendedor recomendo a loja veio tudo certo.",
+
+likes:64,
+
+video:"0:11",
+
+fotos:[
+"https://i.imgur.com/2Q9XjQv.jpeg"
+]
+}
+
+];
+
+}
+
+/* ===================================== */
+/* RENDER */
+/* ===================================== */
+
+const grid =
+document.getElementById("reviewsGrid");
+
+reviews.forEach((review,index)=>{
+
+const foto =
+review.fotos?.[0] || "";
+
+const card =
+document.createElement("div");
+
+card.className =
+"card";
+
+card.innerHTML = `
+
+<div class="media">
+
+<img src="${foto}">
+
+${review.video ? `
+
+<div class="video-time">
+${review.video}
+</div>
+
+` : ""}
+
+${review.galeria ? `
+
+<div class="gallery-count">
+
+<i class="fa-regular fa-image"></i>
+
+${review.galeria}
+
+</div>
+
+` : ""}
+
+</div>
+
+<div class="card-content">
+
+<div class="review-text">
+${review.texto || ""}
+</div>
+
+<div class="stars-row">
+
+<div class="stars">
+
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+
+</div>
+
+<div class="likes">
+
+<i class="fa-regular fa-thumbs-up"></i>
+
+${review.likes || 0}
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+card.onclick = ()=>{
+
+window.location.href =
+"avaliacao-detalhe.html";
+
+};
+
+grid.appendChild(card);
+
+});
+
+/* ===================================== */
+/* VOLTAR */
+/* ===================================== */
+
+document.querySelector(".back")
+.addEventListener("click", ()=>{
+
+history.back();
+
+});
+
+/* ===================================== */
+/* CHAT */
+/* ===================================== */
+
+document.querySelector(".chat-btn")
+.addEventListener("click", ()=>{
+
+alert("Chat aberto!");
+
+});
+
+/* ===================================== */
+/* COMPRAR */
+/* ===================================== */
+
+document.querySelector(".buy-btn")
+.addEventListener("click", ()=>{
+
+window.location.href =
+"checkout.html";
+
+});
+
+/* ===================================== */
+/* FILTROS */
+/* ===================================== */
+
+document.querySelectorAll(".filter")
+.forEach(btn=>{
+
+btn.addEventListener("click", ()=>{
+
+document.querySelectorAll(".filter")
+.forEach(b=>{
+
+b.classList.remove("active");
+
+});
+
+btn.classList.add("active");
+
+});
+
+});
+
+</script>
+
+</body>
+</html>

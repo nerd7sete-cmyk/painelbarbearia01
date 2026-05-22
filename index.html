@@ -1,274 +1,1573 @@
 ﻿<!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Agendamento</title>
+
+<meta charset="UTF-8"/>
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+
+<title>Shopee Produto</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+rel="stylesheet"
+/>
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+/>
 
 <style>
-* { box-sizing: border-box; }
 
-body {
-margin: 0;
-background: #0b141a;
-font-family: Arial, sans-serif;
-color: #fff;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
 }
 
-/* CHAT */
-.chat {
-padding: 12px;
-display: flex;
-flex-direction: column;
-gap: 10px;
-padding-bottom: 90px;
+body{
+background:#f5f5f5;
+font-family:'Roboto',sans-serif;
+overflow-x:hidden;
+color:#222;
+max-width:430px;
+margin:auto;
 }
 
-/* MENSAGENS */
-.msg {
-max-width: 85%;
-padding: 10px 12px;
-border-radius: 12px;
-font-size: 14px;
-line-height: 1.4;
-word-wrap: break-word;
+/* HEADER */
+
+.header{
+position:fixed;
+top:0;
+left:50%;
+transform:translateX(-50%);
+width:100%;
+max-width:430px;
+height:52px;
+background:#fff;
+display:flex;
+align-items:center;
+padding:0 12px;
+z-index:999999;
+border-bottom:1px solid #ededed;
 }
 
-.bot {
-background: #202c33;
-align-self: flex-start;
+.back-btn{
+font-size:21px;
+color:#ee4d2d;
+width:28px;
+cursor:pointer;
 }
 
-.user {
-background: #005c4b;
-align-self: flex-end;
+.search{
+flex:1;
+height:36px;
+background:#f5f5f5;
+border-radius:4px;
+display:flex;
+align-items:center;
+padding:0 12px;
+margin:0 10px;
 }
 
-/* HORA */
-.hora {
-font-size: 10px;
-opacity: 0.6;
-margin-top: 4px;
-text-align: right;
+.search i{
+font-size:13px;
+color:#999;
+margin-right:8px;
 }
 
-/* DIGITANDO */
-.typing {
-background: #202c33;
-padding: 10px;
-border-radius: 12px;
-width: 60px;
+.search input{
+border:none;
+outline:none;
+background:none;
+width:100%;
+font-size:13px;
+color:#666;
 }
 
-.typing span {
-display: inline-block;
-width: 6px;
-height: 6px;
-background: #fff;
-border-radius: 50%;
-margin: 2px;
-animation: blink 1.4s infinite;
+/* ICONES */
+
+.header-icons{
+display:flex;
+align-items:center;
+gap:15px;
 }
 
-.typing span:nth-child(2){ animation-delay: 0.2s; }
-.typing span:nth-child(3){ animation-delay: 0.4s; }
-
-@keyframes blink {
-0%,80%,100%{opacity:0;}
-40%{opacity:1;}
+.header-icons i{
+font-size:20px;
+color:#ee4d2d;
+cursor:pointer;
 }
 
-/* INPUT */
-.input-area {
-position: fixed;
-bottom: 0;
-width: 100%;
-background: #202c33;
-padding: 8px;
-display: flex;
-gap: 8px;
-align-items: center;
+/* GALERIA */
+
+.gallery{
+margin-top:52px;
+position:relative;
+background:#efefef;
 }
 
-input {
-flex: 1;
-padding: 12px;
-border-radius: 25px;
-border: none;
-background: #2a3942;
-color: #fff;
-font-size: 14px;
+.main-image{
+width:100%;
+height:390px;
+object-fit:cover;
+display:block;
+background:#f2f2f2;
 }
 
-button {
-width: 45px;
-height: 45px;
-border-radius: 50%;
-border: none;
-background: #00a884;
-color: #fff;
-font-size: 16px;
+/* TOP ICONS */
+
+.top-icons{
+position:absolute;
+top:10px;
+right:10px;
+display:flex;
+gap:8px;
 }
+
+.top-icon{
+width:34px;
+height:34px;
+border-radius:50%;
+background:rgba(0,0,0,.38);
+display:flex;
+align-items:center;
+justify-content:center;
+backdrop-filter:blur(4px);
+}
+
+.top-icon i{
+font-size:15px;
+color:#fff;
+}
+
+/* PLAY */
+
+.play{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:78px;
+height:78px;
+border-radius:50%;
+border:2px solid rgba(255,255,255,.9);
+background:rgba(0,0,0,.25);
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.play i{
+font-size:28px;
+color:#fff;
+margin-left:4px;
+}
+
+/* COUNT */
+
+.count{
+position:absolute;
+bottom:10px;
+right:10px;
+background:#fff;
+padding:6px 10px;
+border-radius:20px;
+font-size:12px;
+font-weight:500;
+color:#555;
+}
+
+/* ALERT */
+
+.alert{
+height:38px;
+background:#fff5f2;
+border-top:1px solid #ffd7cd;
+border-bottom:1px solid #ffd7cd;
+display:flex;
+align-items:center;
+padding:0 12px;
+gap:8px;
+color:#ee4d2d;
+font-size:12px;
+font-weight:500;
+}
+
+.alert i{
+font-size:15px;
+}
+
+/* BOX */
+
+.box{
+background:#fff;
+padding:10px 12px;
+}
+
+/* VARIACOES */
+
+.var-title{
+font-size:12px;
+color:#777;
+margin-bottom:10px;
+}
+
+.variations{
+display:flex;
+gap:8px;
+overflow:auto;
+}
+
+.variations::-webkit-scrollbar{
+display:none;
+}
+
+.var{
+width:54px;
+height:72px;
+border:1px solid #ddd;
+border-radius:4px;
+overflow:hidden;
+background:#fff;
+flex:none;
+cursor:pointer;
+}
+
+.var.active{
+border:2px solid #ee4d2d;
+}
+
+.var img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+/* PRECO */
+
+.price-row{
+margin-top:14px;
+display:flex;
+justify-content:space-between;
+align-items:flex-end;
+}
+
+.price{
+font-size:22px;
+font-weight:500;
+color:#ee4d2d;
+line-height:1;
+}
+
+.price span{
+font-size:15px;
+}
+
+.old{
+margin-top:5px;
+font-size:12px;
+color:#888;
+}
+
+.sold{
+font-size:12px;
+color:#333;
+}
+
+/* CUPONS */
+
+.coupons{
+margin-top:12px;
+display:flex;
+gap:6px;
+overflow:auto;
+}
+
+.coupons::-webkit-scrollbar{
+display:none;
+}
+
+.coupon{
+padding:5px 8px;
+border:1px solid #ffcbbd;
+background:#fff8f5;
+color:#ee4d2d;
+font-size:11px;
+border-radius:2px;
+white-space:nowrap;
+}
+
+/* TITULO */
+
+.title{
+margin-top:12px;
+font-size:14px;
+line-height:21px;
+font-weight:400;
+color:#222;
+}
+
+/* INFO */
+
+.info{
+margin-top:14px;
+border-top:1px solid #f0f0f0;
+}
+
+.item{
+height:52px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+border-bottom:1px solid #f0f0f0;
+}
+
+.item-left{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.item-left i{
+font-size:15px;
+color:#ee4d2d;
+}
+
+.item-left span{
+font-size:13px;
+color:#333;
+}
+
+.arrow{
+font-size:17px;
+color:#bbb;
+}
+
+/* IMPORT */
+
+.import{
+padding-top:10px;
+font-size:11px;
+line-height:17px;
+color:#777;
+}
+
+/* REVIEWS */
+
+.review-box{
+margin-top:8px;
+background:#fff;
+padding:12px;
+}
+
+.review-top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.review-title{
+font-size:13px;
+font-weight:500;
+}
+
+.review-title span{
+color:#ffb400;
+}
+
+.review-more{
+font-size:12px;
+color:#777;
+}
+
+.review-search{
+margin-top:10px;
+height:38px;
+border:1px solid #ececec;
+border-radius:4px;
+display:flex;
+align-items:center;
+padding:0 10px;
+gap:8px;
+}
+
+.review-search input{
+width:100%;
+border:none;
+outline:none;
+background:none;
+font-size:12px;
+}
+
+.review{
+margin-top:16px;
+}
+
+.review-head{
+display:flex;
+justify-content:space-between;
+}
+
+.user{
+display:flex;
+gap:8px;
+}
+
+.avatar{
+width:30px;
+height:30px;
+border-radius:50%;
+background:#ddd;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:12px;
+color:#888;
+}
+
+.name{
+font-size:12px;
+font-weight:500;
+}
+
+.stars{
+font-size:10px;
+color:#ffb400;
+margin-top:2px;
+}
+
+.help{
+font-size:11px;
+color:#888;
+}
+
+.variation{
+margin-top:6px;
+font-size:11px;
+color:#888;
+}
+
+.text{
+margin-top:6px;
+font-size:13px;
+line-height:20px;
+}
+
+.images{
+margin-top:8px;
+display:flex;
+gap:5px;
+overflow:auto;
+}
+
+.images img{
+width:82px;
+height:82px;
+object-fit:cover;
+border-radius:3px;
+flex:none;
+}
+
+/* FOOTER */
+
+.bottom{
+position:fixed;
+left:50%;
+transform:translateX(-50%);
+bottom:0;
+width:100%;
+max-width:430px;
+height:54px;
+display:flex;
+z-index:999999;
+}
+
+.chat{
+width:22%;
+background:#2db7aa;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+color:#fff;
+}
+
+.cart{
+width:22%;
+background:#27a89d;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+color:#fff;
+border-left:1px solid rgba(255,255,255,.2);
+}
+
+.buy{
+flex:1;
+background:#ee4d2d;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+color:#fff;
+cursor:pointer;
+}
+
+.buy small{
+font-size:10px;
+}
+
+.buy strong{
+font-size:16px;
+margin-top:1px;
+}
+
+.space{
+height:70px;
+}
+
+/* MODAL */
+
+.buy-overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.55);
+z-index:99999999;
+opacity:0;
+visibility:hidden;
+transition:.25s;
+}
+
+.buy-overlay.active{
+opacity:1;
+visibility:visible;
+}
+
+.buy-modal{
+position:absolute;
+left:50%;
+bottom:0;
+transform:translateX(-50%) translateY(100%);
+width:100%;
+max-width:430px;
+background:#fff;
+border-radius:22px 22px 0 0;
+padding:14px;
+transition:.28s cubic-bezier(.22,1,.36,1);
+}
+
+.buy-overlay.active .buy-modal{
+transform:translateX(-50%) translateY(0);
+}
+
+.modal-top{
+display:flex;
+gap:12px;
+position:relative;
+}
+
+.modal-img{
+width:92px;
+height:92px;
+border-radius:10px;
+overflow:hidden;
+background:#f5f5f5;
+border:1px solid #eee;
+flex:none;
+}
+
+.modal-img img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.close-modal{
+position:absolute;
+right:0;
+top:-2px;
+font-size:28px;
+color:#999;
+cursor:pointer;
+}
+
+.modal-price{
+font-size:22px;
+font-weight:500;
+color:#ee4d2d;
+}
+
+.modal-old{
+margin-top:6px;
+font-size:13px;
+color:#888;
+}
+
+.modal-stock{
+margin-top:8px;
+font-size:13px;
+color:#777;
+}
+
+.modal-line{
+height:1px;
+background:#f1f1f1;
+margin:18px 0;
+}
+
+.modal-title{
+font-size:14px;
+font-weight:500;
+margin-bottom:12px;
+}
+
+.option-list{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+}
+
+.option-btn{
+min-width:72px;
+height:38px;
+padding:0 14px;
+border:1px solid #ddd;
+border-radius:9px;
+background:#fff;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:13px;
+cursor:pointer;
+}
+
+.option-btn.active{
+border:1.5px solid #ee4d2d;
+background:#fff5f2;
+color:#ee4d2d;
+}
+
+.qty-area{
+margin-top:24px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+
+.qty-box{
+display:flex;
+align-items:center;
+}
+
+.qty-btn{
+width:38px;
+height:38px;
+border:1px solid #ddd;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:24px;
+cursor:pointer;
+}
+
+.qty-number{
+width:52px;
+height:38px;
+border-top:1px solid #ddd;
+border-bottom:1px solid #ddd;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.modal-buttons{
+display:flex;
+gap:10px;
+margin-top:24px;
+}
+
+.btn-cart,
+.btn-buy{
+flex:1;
+height:48px;
+border:none;
+border-radius:12px;
+font-size:15px;
+cursor:pointer;
+}
+
+.btn-cart{
+background:#fff5f2;
+color:#ee4d2d;
+}
+
+.btn-buy{
+background:#ee4d2d;
+color:#fff;
+}
+
 </style>
+
 </head>
 
 <body>
 
-<div class="chat" id="chat"></div>
+<!-- HEADER -->
 
-<div class="input-area">
-<input type="text" id="input" placeholder="Digite sua mensagem">
-<button onclick="enviar()">➤</button>
+<div class="header">
+
+<div class="back-btn">
+<i class="fa-solid fa-arrow-left"></i>
+</div>
+
+<div class="search">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+type="text"
+placeholder="Buscar mais na Shopee"
+/>
+
+</div>
+
+<div class="header-icons">
+
+<i class="fa-brands fa-whatsapp"></i>
+
+<i class="fa-solid fa-share-nodes"></i>
+
+<i class="fa-solid fa-cart-shopping"></i>
+
+<i class="fa-solid fa-ellipsis-vertical"></i>
+
+</div>
+
+</div>
+
+<!-- GALERIA -->
+
+<div class="gallery">
+
+<img
+src=""
+class="main-image"
+id="mainImage"
+/>
+
+<div class="top-icons">
+
+<div class="top-icon">
+<i class="fa-brands fa-whatsapp"></i>
+</div>
+
+<div class="top-icon">
+<i class="fa-solid fa-share-nodes"></i>
+</div>
+
+</div>
+
+<div class="play">
+<i class="fa-solid fa-play"></i>
+</div>
+
+<div class="count">
+1/1
+</div>
+
+</div>
+
+<!-- ALERT -->
+
+<div class="alert">
+
+<i class="fa-solid fa-circle-xmark"></i>
+
+Cupom de Frete inaplicável no momento
+
+</div>
+
+<!-- PRODUTO -->
+
+<div class="box">
+
+<div class="var-title">
+Variações Disponíveis
+</div>
+
+<div class="variations"></div>
+
+<div class="price-row">
+
+<div>
+
+<div class="price">
+<span>R$</span>0,00
+</div>
+
+<div class="old">
+ou R$0,00
+</div>
+
+</div>
+
+<div class="sold">
+0 Vendido(s)
+</div>
+
+</div>
+
+<div class="coupons"></div>
+
+<div class="title">
+Produto
+</div>
+
+<div class="info">
+
+<div class="item">
+
+<div class="item-left">
+
+<i class="fa-solid fa-plane"></i>
+
+<span id="freteText">
+Frete grátis
+</span>
+
+</div>
+
+<div class="arrow">
+›
+</div>
+
+</div>
+
+<div class="item">
+
+<div class="item-left">
+
+<i class="fa-regular fa-credit-card"></i>
+
+<span id="parcelamentoText">
+Parcele em até 12x sem juros
+</span>
+
+</div>
+
+<div class="arrow">
+›
+</div>
+
+</div>
+
+</div>
+
+<div class="import">
+
+Produto internacional objeto de declaração
+de importação e sujeito a impostos.
+
+</div>
+
+</div>
+
+<!-- REVIEWS -->
+
+<div class="review-box">
+
+<div class="review-top">
+
+<div class="review-title">
+
+4.9 <span>★</span>
+Avaliações do produto
+
+</div>
+
+<div class="review-more">
+Ver mais ›
+</div>
+
+</div>
+
+<div class="review-search">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+type="text"
+placeholder="Busque avaliações"
+/>
+
+</div>
+
+<div id="reviewsContainer"></div>
+
+<div class="space"></div>
+
+</div>
+
+<!-- FOOTER -->
+
+<div class="bottom">
+
+<div class="chat">
+<i class="fa-regular fa-comment-dots"></i>
+</div>
+
+<div class="cart">
+<i class="fa-solid fa-cart-plus"></i>
+</div>
+
+<div class="buy">
+
+<small>
+Compre com cupons
+</small>
+
+<strong>
+R$0,00
+</strong>
+
+</div>
+
+</div>
+
+<!-- MODAL -->
+
+<div
+class="buy-overlay"
+id="buyOverlay"
+>
+
+<div class="buy-modal">
+
+<div class="modal-top">
+
+<div class="modal-img">
+
+<img
+id="modalImage"
+src=""
+>
+
+</div>
+
+<div>
+
+<div
+class="modal-price"
+id="modalPrice"
+>
+
+R$0,00
+
+</div>
+
+<div
+class="modal-old"
+id="modalOld"
+>
+
+ou R$0,00
+
+</div>
+
+<div
+class="modal-stock"
+id="modalStock"
+>
+
+Estoque disponível
+
+</div>
+
+</div>
+
+<div
+class="close-modal"
+id="closeModal"
+>
+
+×
+
+</div>
+
+</div>
+
+<div class="modal-line"></div>
+
+<div class="modal-title">
+Cor
+</div>
+
+<div
+class="option-list"
+id="colorOptions"
+></div>
+
+<div
+class="modal-title"
+style="margin-top:22px;"
+>
+Combo
+</div>
+
+<div
+class="option-list"
+id="comboOptions"
+></div>
+
+<div class="qty-area">
+
+<div class="qty-title">
+Quantidade
+</div>
+
+<div class="qty-box">
+
+<div
+class="qty-btn"
+id="minusQty"
+>
+−
+</div>
+
+<div
+class="qty-number"
+id="qtyNumber"
+>
+1
+</div>
+
+<div
+class="qty-btn"
+id="plusQty"
+>
++
+</div>
+
+</div>
+
+</div>
+
+<div class="modal-buttons">
+
+<button
+class="btn-cart"
+id="addCart"
+>
+Adicionar
+</button>
+
+<button
+class="btn-buy"
+id="buyNow"
+>
+Comprar
+</button>
+
+</div>
+
+</div>
+
 </div>
 
 <script>
 
-//////////////////////////////////////////////////
-// 🔥 DADOS BARBEIRO
-//////////////////////////////////////////////////
+/* ====================================== */
+/* PRODUTO */
+/* ====================================== */
 
-let barbeiros = JSON.parse(localStorage.getItem("barbeiros")) || [];
-let id = localStorage.getItem("barbeiroAtual");
-let b = barbeiros.find(x => x.id == id);
+const produto =
+JSON.parse(
+localStorage.getItem("produtoShopee")
+) || {};
 
-//////////////////////////////////////////////////
-// 🔥 CONTROLE
-//////////////////////////////////////////////////
+/* ====================================== */
+/* TITULO */
+/* ====================================== */
 
-let etapa = 0;
-let nome = "";
-let whatsapp = "";
+document.querySelector(".title").innerText =
+produto.nome || "Produto";
 
-const chat = document.getElementById("chat");
+document.title =
+produto.nome || "Shopee Produto";
 
-//////////////////////////////////////////////////
-// 🔥 COPY
-//////////////////////////////////////////////////
+/* ====================================== */
+/* PRECO */
+/* ====================================== */
 
-let msg1 = "👋 Olá, tudo bem?";
-let msg2 = "💈 Seja bem-vindo! Vou te ajudar a agendar seu horário de forma rápida e prática.";
-let msg3 = "✍️ Para começarmos, me informe seu nome completo:";
-let msg4 = "Perfeito";
-let msg5 = "📲 Agora me informe seu WhatsApp para confirmação do agendamento.";
+document.querySelector(".price").innerHTML =
+`<span>R$</span>${produto.preco || "0,00"}`;
 
-//////////////////////////////////////////////////
-// 🔥 HORA
-//////////////////////////////////////////////////
+document.querySelector(".old").innerText =
+`ou R$${produto.precoAntigo || "0,00"}`;
 
-function horaAtual(){
-let d = new Date();
-return d.getHours().toString().padStart(2,'0') + ":" +
-       d.getMinutes().toString().padStart(2,'0');
-}
+document.querySelector(".buy strong").innerText =
+`R$${produto.preco || "0,00"}`;
 
-//////////////////////////////////////////////////
-// 🔥 MSG BOT
-//////////////////////////////////////////////////
+/* ====================================== */
+/* FOTO PRINCIPAL */
+/* ====================================== */
 
-function msgBot(texto){
-let div = document.createElement("div");
-div.className = "msg bot";
-div.innerHTML = texto + `<div class="hora">${horaAtual()}</div>`;
-chat.appendChild(div);
-chat.scrollTop = chat.scrollHeight;
-}
+document.getElementById("mainImage").src =
+produto.fotoPrincipal ||
+"https://via.placeholder.com/500";
 
-//////////////////////////////////////////////////
-// 🔥 MSG USER
-//////////////////////////////////////////////////
+/* ====================================== */
+/* MINIATURAS */
+/* ====================================== */
 
-function msgUser(texto){
-let div = document.createElement("div");
-div.className = "msg user";
-div.innerHTML = texto + `<div class="hora">${horaAtual()}</div>`;
-chat.appendChild(div);
-chat.scrollTop = chat.scrollHeight;
-}
+const variations =
+document.querySelector(".variations");
 
-//////////////////////////////////////////////////
-// 🔥 DIGITANDO
-//////////////////////////////////////////////////
+const miniaturas =
+produto.miniaturas || [];
 
-function typing(callback){
-let div = document.createElement("div");
-div.className = "typing";
-div.innerHTML = "<span></span><span></span><span></span>";
-chat.appendChild(div);
+miniaturas.forEach((foto,index)=>{
 
-setTimeout(()=>{
-div.remove();
-callback();
-},800);
-}
+if(foto){
 
-//////////////////////////////////////////////////
-// 🔥 INICIO
-//////////////////////////////////////////////////
+const div =
+document.createElement("div");
 
-function iniciar(){
-setTimeout(()=> typing(()=> msgBot(msg1)), 500);
-setTimeout(()=> typing(()=> msgBot(msg2)), 1800);
-setTimeout(()=> typing(()=> msgBot(msg3)), 3000);
-}
+div.className =
+index === 0
+? "var active"
+: "var";
 
-//////////////////////////////////////////////////
-// 🔥 ENVIAR
-//////////////////////////////////////////////////
+div.innerHTML =
+`<img src="${foto}">`;
 
-function enviar(){
+div.onclick = ()=>{
 
-let input = document.getElementById("input");
-let valor = input.value.trim();
+document.querySelectorAll(".var")
+.forEach(v=>{
 
-if(!valor) return;
+v.classList.remove("active");
 
-msgUser(valor);
-input.value = "";
+});
 
-// NOME
-if(etapa === 0){
+div.classList.add("active");
 
-nome = valor;
+document.getElementById("mainImage").src =
+foto;
 
-localStorage.setItem("nomeCliente", nome);
-
-setTimeout(()=> typing(()=> msgBot(`${msg4}, ${nome} 👊`)), 800);
-setTimeout(()=> typing(()=> msgBot(msg5)), 2000);
-
-input.placeholder = "Digite seu WhatsApp";
-etapa = 1;
-
-// WHATS
-}else if(etapa === 1){
-
-if(valor.length < 10){
-msgBot("❌ Digite um WhatsApp válido");
-return;
-}
-
-whatsapp = valor;
-
-localStorage.setItem("whatsappCliente", whatsapp);
-
-// 🔥 CRIA BASE DO AGENDAMENTO
-let agendamentoTemp = {
-nome,
-whatsapp
 };
 
-localStorage.setItem("agendamentoTemp", JSON.stringify(agendamentoTemp));
-
-setTimeout(()=> typing(()=> msgBot("🚀 Tudo certo! Agora vamos escolher seu serviço 👇")), 800);
-
-// 🔥 IR PRA SERVIÇOS
-setTimeout(()=>{
-window.location.href = "servicos.html";
-},2000);
+variations.appendChild(div);
 
 }
+
+});
+
+/* ====================================== */
+/* CUPONS */
+/* ====================================== */
+
+const coupons =
+document.querySelector(".coupons");
+
+(produto.cupons || []).forEach(cupom=>{
+
+const div =
+document.createElement("div");
+
+div.className = "coupon";
+
+div.innerText = cupom;
+
+coupons.appendChild(div);
+
+});
+
+/* ====================================== */
+/* FRETE */
+/* ====================================== */
+
+const freteText =
+document.getElementById("freteText");
+
+if(produto.freteGratis){
+
+freteText.innerHTML =
+'<span style="color:#26aa99;font-weight:700;">Frete grátis</span>';
+
+}else{
+
+freteText.innerText =
+produto.freteTexto ||
+"Frete R$19,90";
+
 }
 
-iniciar();
+/* ====================================== */
+/* PARCELAMENTO */
+/* ====================================== */
+
+document.getElementById("parcelamentoText")
+.innerText =
+produto.parcelamentoTexto ||
+"Parcele em até 12x sem juros";
+
+/* ====================================== */
+/* VENDIDOS */
+/* ====================================== */
+
+document.querySelector(".sold").innerText =
+`${produto.vendidos || 0} Vendido(s)`;
+
+/* ====================================== */
+/* REVIEWS */
+/* ====================================== */
+
+const reviewsContainer =
+document.getElementById("reviewsContainer");
+
+(produto.reviews || []).forEach((review,index)=>{
+
+const div =
+document.createElement("div");
+
+div.className = "review";
+
+div.innerHTML = `
+
+<div class="review-head">
+
+<div class="user">
+
+<div class="avatar">
+<i class="fa-solid fa-user"></i>
+</div>
+
+<div>
+
+<div class="name">
+${review.nome || "usuario"}
+</div>
+
+<div class="stars">
+★★★★★
+</div>
+
+</div>
+
+</div>
+
+<div class="help">
+Útil (${index + 1})
+</div>
+
+</div>
+
+<div class="variation">
+${review.variacao || "Variação Premium"}
+</div>
+
+<div class="text">
+${review.texto || ""}
+</div>
+
+<div class="images">
+
+${(review.fotos || [])
+.map(f=>`<img src="${f}">`)
+.join("")}
+
+</div>
+
+`;
+
+reviewsContainer.appendChild(div);
+
+});
+
+/* ====================================== */
+/* MODAL */
+/* ====================================== */
+
+const buyOverlay =
+document.getElementById("buyOverlay");
+
+document.querySelector(".buy")
+.onclick = ()=>{
+
+document.getElementById("modalImage").src =
+produto.fotoPrincipal ||
+document.getElementById("mainImage").src;
+
+document.getElementById("modalPrice")
+.innerText =
+`R$${produto.preco || "0,00"}`;
+
+document.getElementById("modalOld")
+.innerText =
+`ou R$${produto.precoAntigo || "0,00"}`;
+
+document.getElementById("modalStock")
+.innerText =
+`Estoque: ${produto.estoque || 10}`;
+
+const colorOptions =
+document.getElementById("colorOptions");
+
+colorOptions.innerHTML = "";
+
+(produto.cores || ["Preto"])
+.forEach((cor,index)=>{
+
+const div =
+document.createElement("div");
+
+div.className =
+index === 0
+? "option-btn active"
+: "option-btn";
+
+div.innerText = cor;
+
+div.onclick = ()=>{
+
+colorOptions
+.querySelectorAll(".option-btn")
+.forEach(el=>{
+
+el.classList.remove("active");
+
+});
+
+div.classList.add("active");
+
+};
+
+colorOptions.appendChild(div);
+
+});
+
+const comboOptions =
+document.getElementById("comboOptions");
+
+comboOptions.innerHTML = "";
+
+(produto.combos || ["1 Unidade"])
+.forEach((combo,index)=>{
+
+const div =
+document.createElement("div");
+
+div.className =
+index === 0
+? "option-btn active"
+: "option-btn";
+
+div.innerText = combo;
+
+div.onclick = ()=>{
+
+comboOptions
+.querySelectorAll(".option-btn")
+.forEach(el=>{
+
+el.classList.remove("active");
+
+});
+
+div.classList.add("active");
+
+};
+
+comboOptions.appendChild(div);
+
+});
+
+buyOverlay.classList.add("active");
+
+};
+
+/* ====================================== */
+/* FECHAR */
+/* ====================================== */
+
+document.getElementById("closeModal")
+.onclick = ()=>{
+
+buyOverlay.classList.remove("active");
+
+};
+
+buyOverlay.addEventListener("click", e=>{
+
+if(e.target === buyOverlay){
+
+buyOverlay.classList.remove("active");
+
+}
+
+});
+
+/* ====================================== */
+/* QUANTIDADE */
+/* ====================================== */
+
+let quantidade = 1;
+
+const qtyNumber =
+document.getElementById("qtyNumber");
+
+document.getElementById("plusQty")
+.onclick = ()=>{
+
+quantidade++;
+
+qtyNumber.innerText =
+quantidade;
+
+};
+
+document.getElementById("minusQty")
+.onclick = ()=>{
+
+if(quantidade > 1){
+
+quantidade--;
+
+qtyNumber.innerText =
+quantidade;
+
+}
+
+};
+
+/* ====================================== */
+/* CARRINHO */
+/* ====================================== */
+
+document.getElementById("addCart")
+.onclick = ()=>{
+
+const carrinho =
+JSON.parse(
+localStorage.getItem("carrinhoShopee")
+) || [];
+
+carrinho.push({
+
+nome:
+produto.nome || "Produto",
+
+preco:
+produto.preco || "0,00",
+
+foto:
+produto.fotoPrincipal || "",
+
+quantidade
+
+});
+
+localStorage.setItem(
+"carrinhoShopee",
+JSON.stringify(carrinho)
+);
+
+alert("Produto adicionado!");
+
+buyOverlay.classList.remove("active");
+
+};
+
+/* ====================================== */
+/* COMPRAR */
+/* ====================================== */
+
+document.getElementById("buyNow")
+.onclick = ()=>{
+
+window.location.href =
+"checkout.html";
+
+};
+
+/* ====================================== */
+/* SHARE */
+/* ====================================== */
+
+document.querySelectorAll(".fa-share-nodes")
+.forEach(btn=>{
+
+btn.onclick = async ()=>{
+
+try{
+
+await navigator.share({
+
+title:
+document.querySelector(".title").innerText,
+
+text:"Confira este produto",
+
+url:window.location.href
+
+});
+
+}catch(e){}
+
+};
+
+});
+
+/* ====================================== */
+/* BUSCA */
+/* ====================================== */
+
+document.querySelector(".search input")
+.addEventListener("keypress", function(e){
+
+if(e.key === "Enter"){
+
+const valor =
+this.value.trim();
+
+if(valor !== ""){
+
+window.open(
+"https://shopee.com.br/search?keyword=" +
+encodeURIComponent(valor),
+"_blank"
+);
+
+}
+
+}
+
+});
+
+/* ====================================== */
+/* VOLTAR */
+/* ====================================== */
+
+document.querySelector(".back-btn")
+.onclick = ()=>{
+
+history.back();
+
+};
 
 </script>
 

@@ -1,0 +1,735 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+<meta charset="UTF-8"/>
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+
+<title>Carrinho</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+rel="stylesheet"
+/>
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+/>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
+}
+
+body{
+background:#f5f5f5;
+font-family:'Roboto',sans-serif;
+max-width:430px;
+margin:auto;
+overflow-x:hidden;
+color:#222;
+}
+
+/* HEADER */
+
+.header{
+position:fixed;
+top:0;
+left:50%;
+transform:translateX(-50%);
+width:100%;
+max-width:430px;
+height:52px;
+background:#fff;
+display:flex;
+align-items:center;
+justify-content:center;
+border-bottom:1px solid #ededed;
+z-index:99999;
+}
+
+.back{
+position:absolute;
+left:14px;
+font-size:22px;
+color:#ee4d2d;
+cursor:pointer;
+}
+
+.title{
+font-size:18px;
+font-weight:500;
+}
+
+.edit{
+position:absolute;
+right:14px;
+font-size:14px;
+color:#ee4d2d;
+}
+
+/* CONTENT */
+
+.content{
+padding:60px 0 100px;
+}
+
+/* STORE */
+
+.store-box{
+background:#fff;
+margin-bottom:8px;
+padding:12px;
+}
+
+.store-header{
+display:flex;
+align-items:center;
+gap:8px;
+margin-bottom:14px;
+}
+
+.store-header i{
+font-size:17px;
+}
+
+.store-name{
+font-size:15px;
+font-weight:500;
+}
+
+/* PRODUCT */
+
+.product{
+display:flex;
+gap:10px;
+margin-bottom:14px;
+}
+
+.check{
+width:20px;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.checkbox{
+width:18px;
+height:18px;
+border-radius:50%;
+border:2px solid #ee4d2d;
+background:#ee4d2d;
+display:flex;
+align-items:center;
+justify-content:center;
+color:#fff;
+font-size:10px;
+}
+
+.product-image{
+width:92px;
+height:92px;
+border-radius:6px;
+object-fit:cover;
+background:#f5f5f5;
+flex:none;
+}
+
+.product-info{
+flex:1;
+}
+
+.product-title{
+font-size:13px;
+line-height:18px;
+height:36px;
+overflow:hidden;
+color:#333;
+}
+
+.product-variation{
+margin-top:4px;
+font-size:12px;
+color:#999;
+}
+
+.product-price{
+margin-top:8px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+
+.price{
+font-size:19px;
+color:#ee4d2d;
+font-weight:500;
+}
+
+/* QUANTITY */
+
+.quantity{
+display:flex;
+align-items:center;
+border:1px solid #e6e6e6;
+border-radius:4px;
+overflow:hidden;
+height:28px;
+}
+
+.qty-btn{
+width:28px;
+height:28px;
+background:#fff;
+border:none;
+font-size:18px;
+color:#777;
+cursor:pointer;
+}
+
+.qty-number{
+width:34px;
+text-align:center;
+font-size:14px;
+}
+
+/* FRETE */
+
+.shipping{
+margin-top:12px;
+background:#fffaf5;
+border:1px solid #ffe3d4;
+border-radius:8px;
+padding:10px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+
+.shipping-left{
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.shipping-left i{
+color:#26aa99;
+font-size:15px;
+}
+
+.shipping-text{
+font-size:13px;
+color:#555;
+}
+
+/* COUPON */
+
+.coupon{
+margin-top:10px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding-top:10px;
+border-top:1px solid #f4f4f4;
+}
+
+.coupon-left{
+display:flex;
+align-items:center;
+gap:8px;
+font-size:13px;
+}
+
+.coupon-left i{
+color:#ee4d2d;
+}
+
+.coupon-right{
+font-size:13px;
+color:#bbb;
+}
+
+/* EMPTY */
+
+.empty{
+padding:50px 20px;
+text-align:center;
+color:#999;
+display:none;
+}
+
+.empty i{
+font-size:42px;
+margin-bottom:12px;
+color:#ddd;
+}
+
+/* FOOTER */
+
+.footer{
+position:fixed;
+left:50%;
+transform:translateX(-50%);
+bottom:0;
+width:100%;
+max-width:430px;
+height:78px;
+background:#fff;
+border-top:1px solid #ececec;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 12px;
+z-index:99999;
+}
+
+.footer-left{
+display:flex;
+flex-direction:column;
+}
+
+.total-label{
+font-size:13px;
+color:#666;
+}
+
+.total{
+margin-top:3px;
+font-size:24px;
+font-weight:700;
+color:#ee4d2d;
+}
+
+.checkout-btn{
+width:150px;
+height:48px;
+border:none;
+border-radius:10px;
+background:#ee4d2d;
+color:#fff;
+font-size:17px;
+font-weight:500;
+cursor:pointer;
+}
+
+::-webkit-scrollbar{
+display:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<div class="header">
+
+<div class="back">
+<i class="fa-solid fa-arrow-left"></i>
+</div>
+
+<div class="title">
+Carrinho
+</div>
+
+<div class="edit">
+Editar
+</div>
+
+</div>
+
+<!-- CONTENT -->
+
+<div class="content">
+
+<div id="cartContainer"></div>
+
+<div
+class="empty"
+id="emptyCart"
+>
+
+<i class="fa-solid fa-cart-shopping"></i>
+
+<div>
+Seu carrinho está vazio
+</div>
+
+</div>
+
+</div>
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+<div class="footer-left">
+
+<div class="total-label">
+Total
+</div>
+
+<div
+class="total"
+id="totalPrice"
+>
+R$0,00
+</div>
+
+</div>
+
+<button
+class="checkout-btn"
+id="checkoutBtn"
+>
+Comprar
+</button>
+
+</div>
+
+<script>
+
+/* ==================================== */
+/* PRODUTOS */
+/* ==================================== */
+
+let carrinho =
+JSON.parse(
+localStorage.getItem("carrinhoShopee")
+) || [];
+
+/* ==================================== */
+/* PRODUTO PRINCIPAL */
+/* ==================================== */
+
+const produto =
+JSON.parse(
+localStorage.getItem("produtoShopee")
+);
+
+const compra =
+JSON.parse(
+localStorage.getItem("compraShopee")
+);
+
+/* ==================================== */
+/* ADICIONAR AO CARRINHO */
+/* ==================================== */
+
+if(
+produto &&
+compra &&
+!localStorage.getItem("produtoAdicionado")
+){
+
+carrinho.push({
+
+nome:
+produto.nome || "Produto",
+
+preco:
+produto.preco || "0,00",
+
+imagem:
+produto.fotoPrincipal || "",
+
+cor:
+compra.cor || "Padrão",
+
+combo:
+compra.combo || "1 Unidade",
+
+quantidade:
+compra.quantidade || 1
+
+});
+
+localStorage.setItem(
+"carrinhoShopee",
+JSON.stringify(carrinho)
+);
+
+localStorage.setItem(
+"produtoAdicionado",
+"true"
+);
+
+}
+
+/* ==================================== */
+/* RENDER */
+/* ==================================== */
+
+const cartContainer =
+document.getElementById("cartContainer");
+
+const emptyCart =
+document.getElementById("emptyCart");
+
+function renderCart(){
+
+cartContainer.innerHTML = "";
+
+if(carrinho.length === 0){
+
+emptyCart.style.display =
+"block";
+
+document.getElementById("totalPrice")
+.innerText =
+"R$0,00";
+
+return;
+
+}
+
+emptyCart.style.display =
+"none";
+
+let total = 0;
+
+carrinho.forEach((item,index)=>{
+
+const preco =
+parseFloat(
+item.preco.replace(",", ".")
+);
+
+const subtotal =
+preco * item.quantidade;
+
+total += subtotal;
+
+const div =
+document.createElement("div");
+
+div.className =
+"store-box";
+
+div.innerHTML = `
+
+<div class="store-header">
+
+<i class="fa-regular fa-store"></i>
+
+<div class="store-name">
+Minha Loja
+</div>
+
+</div>
+
+<div class="product">
+
+<div class="check">
+
+<div class="checkbox">
+
+<i class="fa-solid fa-check"></i>
+
+</div>
+
+</div>
+
+<img
+class="product-image"
+src="${item.imagem}"
+>
+
+<div class="product-info">
+
+<div class="product-title">
+${item.nome}
+</div>
+
+<div class="product-variation">
+${item.cor}, ${item.combo}
+</div>
+
+<div class="product-price">
+
+<div class="price">
+R$${item.preco}
+</div>
+
+<div class="quantity">
+
+<button
+class="qty-btn minus"
+data-index="${index}"
+>
+−
+</button>
+
+<div class="qty-number">
+${item.quantidade}
+</div>
+
+<button
+class="qty-btn plus"
+data-index="${index}"
+>
++
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="shipping">
+
+<div class="shipping-left">
+
+<i class="fa-solid fa-truck"></i>
+
+<div class="shipping-text">
+Frete grátis disponível
+</div>
+
+</div>
+
+<div class="shipping-text">
+Cupom aplicado
+</div>
+
+</div>
+
+<div class="coupon">
+
+<div class="coupon-left">
+
+<i class="fa-solid fa-ticket"></i>
+
+<div>
+Cupom da Loja
+</div>
+
+</div>
+
+<div class="coupon-right">
+Selecionar ›
+</div>
+
+</div>
+
+`;
+
+cartContainer.appendChild(div);
+
+});
+
+/* TOTAL */
+
+document.getElementById("totalPrice")
+.innerText =
+`R$${total.toFixed(2).replace(".", ",")}`;
+
+/* BOTÕES */
+
+document.querySelectorAll(".plus")
+.forEach(btn=>{
+
+btn.addEventListener("click", ()=>{
+
+const index =
+btn.dataset.index;
+
+carrinho[index].quantidade++;
+
+salvar();
+
+});
+
+});
+
+document.querySelectorAll(".minus")
+.forEach(btn=>{
+
+btn.addEventListener("click", ()=>{
+
+const index =
+btn.dataset.index;
+
+if(carrinho[index].quantidade > 1){
+
+carrinho[index].quantidade--;
+
+}else{
+
+carrinho.splice(index,1);
+
+}
+
+salvar();
+
+});
+
+});
+
+}
+
+/* ==================================== */
+/* SALVAR */
+/* ==================================== */
+
+function salvar(){
+
+localStorage.setItem(
+"carrinhoShopee",
+JSON.stringify(carrinho)
+);
+
+renderCart();
+
+}
+
+/* ==================================== */
+/* CHECKOUT */
+/* ==================================== */
+
+document.getElementById("checkoutBtn")
+.addEventListener("click", ()=>{
+
+window.location.href =
+"checkout.html";
+
+});
+
+/* ==================================== */
+/* VOLTAR */
+/* ==================================== */
+
+document.querySelector(".back")
+.addEventListener("click", ()=>{
+
+history.back();
+
+});
+
+/* ==================================== */
+/* START */
+/* ==================================== */
+
+renderCart();
+
+</script>
+
+</body>
+</html>

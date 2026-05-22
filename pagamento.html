@@ -1,0 +1,643 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+<meta charset="UTF-8"/>
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+
+<title>Pagamento</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+rel="stylesheet"
+/>
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+/>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
+}
+
+body{
+background:#f5f5f5;
+font-family:'Roboto',sans-serif;
+max-width:430px;
+margin:auto;
+overflow-x:hidden;
+color:#222;
+}
+
+/* HEADER */
+
+.header{
+position:fixed;
+top:0;
+left:50%;
+transform:translateX(-50%);
+width:100%;
+max-width:430px;
+height:52px;
+background:#fff;
+display:flex;
+align-items:center;
+justify-content:center;
+border-bottom:1px solid #ededed;
+z-index:99999;
+}
+
+.back{
+position:absolute;
+left:14px;
+font-size:22px;
+color:#ee4d2d;
+cursor:pointer;
+}
+
+.title{
+font-size:18px;
+font-weight:500;
+}
+
+/* CONTENT */
+
+.content{
+padding-top:60px;
+padding-bottom:100px;
+}
+
+/* BOX */
+
+.box{
+background:#fff;
+margin-bottom:8px;
+}
+
+/* TOTAL */
+
+.total-row{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:18px 16px;
+border-bottom:1px solid #f0f0f0;
+}
+
+.total-label{
+font-size:15px;
+color:#222;
+}
+
+.total-value{
+font-size:18px;
+font-weight:500;
+color:#ee4d2d;
+}
+
+/* TIMER */
+
+.timer{
+display:flex;
+justify-content:space-between;
+padding:18px 16px;
+align-items:center;
+}
+
+.timer-left{
+font-size:15px;
+color:#222;
+}
+
+.timer-right{
+text-align:right;
+}
+
+.countdown{
+font-size:16px;
+font-weight:500;
+color:#ee4d2d;
+}
+
+.expire{
+margin-top:4px;
+font-size:12px;
+line-height:17px;
+color:#888;
+}
+
+/* PIX */
+
+.pix-box{
+padding:18px 16px 26px;
+}
+
+.pix-top{
+display:flex;
+align-items:center;
+gap:10px;
+font-size:16px;
+font-weight:500;
+}
+
+.pix-top i{
+font-size:20px;
+color:#26aa99;
+}
+
+.pix-content{
+margin-top:30px;
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+
+.pix-title{
+font-size:15px;
+margin-bottom:16px;
+}
+
+.pix-code{
+width:100%;
+max-width:290px;
+height:52px;
+border:1px solid #e6e6e6;
+border-radius:8px;
+background:#fafafa;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:0 14px;
+font-size:13px;
+color:#888;
+overflow:hidden;
+text-overflow:ellipsis;
+white-space:nowrap;
+}
+
+.copy-btn{
+margin-top:18px;
+height:46px;
+padding:0 22px;
+border-radius:8px;
+border:1px solid #ee4d2d;
+background:#fff;
+color:#ee4d2d;
+font-size:15px;
+font-weight:500;
+cursor:pointer;
+}
+
+/* INSTRUÇÕES */
+
+.instructions{
+padding:18px 16px 10px;
+}
+
+.instructions-title{
+font-size:15px;
+font-weight:500;
+margin-bottom:20px;
+}
+
+.step{
+display:flex;
+gap:14px;
+margin-bottom:24px;
+}
+
+.step-number{
+width:28px;
+height:28px;
+border-radius:50%;
+background:#f2f2f2;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:14px;
+color:#aaa;
+flex:none;
+}
+
+.step-text{
+font-size:14px;
+line-height:20px;
+color:#777;
+}
+
+/* FOOTER */
+
+.footer{
+position:fixed;
+left:50%;
+transform:translateX(-50%);
+bottom:0;
+width:100%;
+max-width:430px;
+height:88px;
+background:#fff;
+border-top:1px solid #ededed;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:0 14px;
+z-index:99999;
+}
+
+.ok-btn{
+width:100%;
+height:54px;
+border:none;
+border-radius:14px;
+background:#ee4d2d;
+color:#fff;
+font-size:18px;
+font-weight:500;
+cursor:pointer;
+}
+
+::-webkit-scrollbar{
+display:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<div class="header">
+
+<div class="back">
+<i class="fa-solid fa-arrow-left"></i>
+</div>
+
+<div class="title">
+Pagamento
+</div>
+
+</div>
+
+<!-- CONTENT -->
+
+<div class="content">
+
+<!-- TOTAL -->
+
+<div class="box">
+
+<div class="total-row">
+
+<div class="total-label">
+Pagamento Total
+</div>
+
+<div
+class="total-value"
+id="totalValue"
+>
+R$0,00
+</div>
+
+</div>
+
+<div class="timer">
+
+<div class="timer-left">
+Pague em até
+</div>
+
+<div class="timer-right">
+
+<div
+class="countdown"
+id="countdown"
+>
+23 horas 59 minutos
+</div>
+
+<div
+class="expire"
+id="expireDate"
+>
+Vencimento em breve
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- PIX -->
+
+<div class="box">
+
+<div class="pix-box">
+
+<div class="pix-top">
+
+<i class="fa-brands fa-pix"></i>
+
+<div>
+Pix
+</div>
+
+</div>
+
+<div class="pix-content">
+
+<div class="pix-title">
+Código Pix
+</div>
+
+<div
+class="pix-code"
+id="pixCode"
+>
+00020101021226850014br.gov.bcb.pix...
+</div>
+
+<button
+class="copy-btn"
+id="copyBtn"
+>
+Copiar Código Pix
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- INSTRUÇÕES -->
+
+<div class="box">
+
+<div class="instructions">
+
+<div class="instructions-title">
+Por favor siga as instruções
+</div>
+
+<div class="step">
+
+<div class="step-number">
+1
+</div>
+
+<div class="step-text">
+Copie o código Pix acima.
+</div>
+
+</div>
+
+<div class="step">
+
+<div class="step-number">
+2
+</div>
+
+<div class="step-text">
+Acesse o app do seu banco ou internet banking de preferência.
+</div>
+
+</div>
+
+<div class="step">
+
+<div class="step-number">
+3
+</div>
+
+<div class="step-text">
+Escolha pagar com o Pix, cole o código e finalize o pagamento.
+</div>
+
+</div>
+
+<div class="step">
+
+<div class="step-number">
+4
+</div>
+
+<div class="step-text">
+Seu pagamento será aprovado em alguns segundos.
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+<button
+class="ok-btn"
+id="okBtn"
+>
+OK
+</button>
+
+</div>
+
+<script>
+
+/* ====================================== */
+/* PRODUTO */
+/* ====================================== */
+
+const produto =
+JSON.parse(
+localStorage.getItem("produtoShopee")
+) || {};
+
+const compra =
+JSON.parse(
+localStorage.getItem("compraShopee")
+) || {};
+
+/* ====================================== */
+/* VALORES */
+/* ====================================== */
+
+const preco =
+parseFloat(
+(produto.preco || "0")
+.replace(",", ".")
+);
+
+const quantidade =
+compra.quantidade || 1;
+
+const subtotal =
+preco * quantidade;
+
+const icms = 21.23;
+
+let frete = 19;
+
+if(produto.freteGratis){
+
+frete = 0;
+
+}
+
+const total =
+subtotal + icms + frete;
+
+/* ====================================== */
+/* TOTAL */
+/* ====================================== */
+
+document.getElementById("totalValue")
+.innerText =
+`R$${total.toFixed(2).replace(".", ",")}`;
+
+/* ====================================== */
+/* PIX */
+/* ====================================== */
+
+const codigoPix =
+`00020101021226850014br.gov.bcb.pix2563pix.exemplo.com/${Date.now()}520400005303986540${total.toFixed(2)}5802BR5920SHOPEE PAGAMENTOS6009SAOPAULO62070503***6304ABCD`;
+
+document.getElementById("pixCode")
+.innerText =
+codigoPix;
+
+/* ====================================== */
+/* COPIAR PIX */
+/* ====================================== */
+
+document.getElementById("copyBtn")
+.addEventListener("click", async ()=>{
+
+try{
+
+await navigator.clipboard.writeText(
+codigoPix
+);
+
+document.getElementById("copyBtn")
+.innerText =
+"Código Copiado";
+
+setTimeout(()=>{
+
+document.getElementById("copyBtn")
+.innerText =
+"Copiar Código Pix";
+
+},2000);
+
+}catch(e){
+
+alert("Não foi possível copiar");
+
+}
+
+});
+
+/* ====================================== */
+/* CONTADOR */
+/* ====================================== */
+
+let tempo = 86399;
+
+function atualizarContador(){
+
+const horas =
+Math.floor(tempo / 3600);
+
+const minutos =
+Math.floor((tempo % 3600) / 60);
+
+const segundos =
+tempo % 60;
+
+document.getElementById("countdown")
+.innerText =
+`${horas} horas ${minutos} minutos ${segundos} segundos`;
+
+tempo--;
+
+if(tempo < 0){
+
+tempo = 0;
+
+}
+
+}
+
+setInterval(
+atualizarContador,
+1000
+);
+
+atualizarContador();
+
+/* ====================================== */
+/* DATA */
+/* ====================================== */
+
+const vencimento =
+new Date(
+Date.now() + 24 * 60 * 60 * 1000
+);
+
+document.getElementById("expireDate")
+.innerText =
+`Vencimento em ${vencimento.toLocaleDateString("pt-BR")}, ${vencimento.toLocaleTimeString("pt-BR", {
+hour:"2-digit",
+minute:"2-digit"
+})}`;
+
+/* ====================================== */
+/* VOLTAR */
+/* ====================================== */
+
+document.querySelector(".back")
+.addEventListener("click", ()=>{
+
+history.back();
+
+});
+
+/* ====================================== */
+/* OK */
+/* ====================================== */
+
+document.getElementById("okBtn")
+.addEventListener("click", ()=>{
+
+window.location.href =
+"produto.html";
+
+});
+
+</script>
+
+</body>
+</html>

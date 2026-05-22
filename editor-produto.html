@@ -1,0 +1,769 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Painel Admin Shopee</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+/>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
+
+body{
+background:#0f1115;
+color:#fff;
+padding:20px;
+}
+
+/* TOPO */
+
+.top{
+margin-bottom:24px;
+}
+
+.top h1{
+font-size:28px;
+font-weight:800;
+}
+
+.top p{
+margin-top:6px;
+color:#9ca3af;
+font-size:14px;
+}
+
+/* GRID */
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:18px;
+}
+
+@media(max-width:900px){
+
+.grid{
+grid-template-columns:1fr;
+}
+
+}
+
+/* CARD */
+
+.card{
+background:#171a21;
+border:1px solid #262b36;
+border-radius:18px;
+padding:18px;
+}
+
+.card-title{
+font-size:17px;
+font-weight:700;
+margin-bottom:18px;
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+/* INPUTS */
+
+.group{
+margin-bottom:16px;
+}
+
+.group label{
+display:block;
+font-size:13px;
+font-weight:600;
+margin-bottom:8px;
+color:#cbd5e1;
+}
+
+.input,
+textarea,
+select{
+width:100%;
+background:#0f1115;
+border:1px solid #303644;
+border-radius:12px;
+height:50px;
+padding:0 14px;
+color:#fff;
+font-size:14px;
+outline:none;
+}
+
+textarea{
+height:100px;
+padding-top:14px;
+resize:none;
+}
+
+.input:focus,
+textarea:focus,
+select:focus{
+border-color:#ff5a36;
+}
+
+/* BOTÃO */
+
+.save{
+width:100%;
+height:56px;
+border:none;
+border-radius:14px;
+background:linear-gradient(
+90deg,
+#ff5a36,
+#ff784f
+);
+color:#fff;
+font-size:16px;
+font-weight:800;
+cursor:pointer;
+margin-top:10px;
+}
+
+.save:hover{
+opacity:.95;
+}
+
+/* REVIEW */
+
+.review-box{
+margin-top:14px;
+padding:14px;
+border-radius:14px;
+background:#0f1115;
+border:1px solid #2f3644;
+}
+
+.review-box h3{
+font-size:14px;
+margin-bottom:14px;
+}
+
+/* FLEX */
+
+.flex{
+display:flex;
+gap:10px;
+}
+
+.flex .group{
+flex:1;
+}
+
+/* STATUS */
+
+.status{
+margin-top:16px;
+padding:14px;
+border-radius:14px;
+background:#052e16;
+border:1px solid #166534;
+color:#4ade80;
+font-size:14px;
+display:none;
+}
+
+/* SWITCH */
+
+.switch{
+display:flex;
+align-items:center;
+justify-content:space-between;
+background:#0f1115;
+border:1px solid #2d3441;
+padding:14px;
+border-radius:14px;
+margin-bottom:12px;
+}
+
+.switch-left{
+display:flex;
+flex-direction:column;
+}
+
+.switch-left strong{
+font-size:14px;
+}
+
+.switch-left span{
+font-size:12px;
+color:#9ca3af;
+margin-top:4px;
+}
+
+.switch input{
+width:22px;
+height:22px;
+accent-color:#ff5a36;
+}
+
+/* CUPONS */
+
+.cupom-row{
+display:flex;
+gap:10px;
+margin-bottom:10px;
+}
+
+.cupom-row input{
+flex:1;
+}
+
+/* MINI */
+
+.mini{
+font-size:12px;
+color:#9ca3af;
+margin-top:4px;
+line-height:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="top">
+
+<h1>
+Painel Admin Shopee
+</h1>
+
+<p>
+Editor profissional completo do produto
+</p>
+
+</div>
+
+<div class="grid">
+
+<!-- PRODUTO -->
+
+<div class="card">
+
+<div class="card-title">
+<i class="fa-solid fa-box"></i>
+Produto
+</div>
+
+<div class="group">
+<label>Nome do produto</label>
+<textarea id="nome"></textarea>
+</div>
+
+<div class="flex">
+
+<div class="group">
+<label>Preço atual</label>
+<input
+type="text"
+class="input"
+id="preco"
+placeholder="67,26"
+/>
+</div>
+
+<div class="group">
+<label>Preço antigo</label>
+<input
+type="text"
+class="input"
+id="precoAntigo"
+placeholder="71,80"
+/>
+</div>
+
+</div>
+
+<div class="flex">
+
+<div class="group">
+<label>Quantidade vendida</label>
+<input
+type="text"
+class="input"
+id="vendidos"
+placeholder="830"
+/>
+</div>
+
+<div class="group">
+<label>Parcelamento</label>
+<input
+type="text"
+class="input"
+id="parcelamento"
+placeholder="12"
+/>
+</div>
+
+</div>
+
+</div>
+
+<!-- FRETE -->
+
+<div class="card">
+
+<div class="card-title">
+<i class="fa-solid fa-truck-fast"></i>
+Frete
+</div>
+
+<div class="switch">
+
+<div class="switch-left">
+
+<strong>
+Frete grátis
+</strong>
+
+<span>
+Ativar frete grátis
+</span>
+
+</div>
+
+<input
+type="checkbox"
+id="freteGratis"
+/>
+
+</div>
+
+<div class="switch">
+
+<div class="switch-left">
+
+<strong>
+Frete com cupom
+</strong>
+
+<span>
+Ex: R$19,00 → R$0,00
+</span>
+
+</div>
+
+<input
+type="checkbox"
+id="freteCupom"
+/>
+
+</div>
+
+<div class="group">
+<label>Valor do frete</label>
+
+<input
+type="text"
+class="input"
+id="valorFrete"
+placeholder="19,00"
+/>
+
+</div>
+
+<div class="group">
+<label>Texto do frete</label>
+
+<input
+type="text"
+class="input"
+id="textoFrete"
+placeholder="Frete grátis"
+/>
+
+</div>
+
+</div>
+
+<!-- FOTOS -->
+
+<div class="card">
+
+<div class="card-title">
+<i class="fa-regular fa-images"></i>
+Fotos do Produto
+</div>
+
+<div class="group">
+<label>Foto principal</label>
+
+<input
+type="text"
+class="input"
+id="fotoPrincipal"
+/>
+
+</div>
+
+<div class="group">
+<label>Miniatura 1</label>
+
+<input
+type="text"
+class="input"
+id="foto1"
+/>
+
+</div>
+
+<div class="group">
+<label>Miniatura 2</label>
+
+<input
+type="text"
+class="input"
+id="foto2"
+/>
+
+</div>
+
+<div class="group">
+<label>Miniatura 3</label>
+
+<input
+type="text"
+class="input"
+id="foto3"
+/>
+
+</div>
+
+<div class="group">
+<label>Miniatura 4</label>
+
+<input
+type="text"
+class="input"
+id="foto4"
+/>
+
+</div>
+
+<div class="group">
+<label>Miniatura 5</label>
+
+<input
+type="text"
+class="input"
+id="foto5"
+/>
+
+</div>
+
+</div>
+
+<!-- CUPONS -->
+
+<div class="card">
+
+<div class="card-title">
+<i class="fa-solid fa-ticket"></i>
+Cupons
+</div>
+
+<div class="cupom-row">
+
+<input
+type="text"
+class="input"
+id="cupom1"
+placeholder="Compre R$120 e ganhe R$3 off"
+/>
+
+</div>
+
+<div class="cupom-row">
+
+<input
+type="text"
+class="input"
+id="cupom2"
+placeholder="Leve 2 e aproveite 3% OFF"
+/>
+
+</div>
+
+</div>
+
+<!-- REVIEW 1 -->
+
+<div class="card">
+
+<div class="card-title">
+<i class="fa-solid fa-star"></i>
+Avaliação 1
+</div>
+
+<div class="review-box">
+
+<div class="group">
+<label>Nome</label>
+
+<input
+type="text"
+class="input"
+id="reviewNome1"
+/>
+
+</div>
+
+<div class="group">
+<label>Texto</label>
+
+<textarea id="reviewTexto1"></textarea>
+
+</div>
+
+<div class="group">
+<label>Foto avaliação 1</label>
+
+<input
+type="text"
+class="input"
+id="reviewFoto1"
+/>
+
+</div>
+
+<div class="group">
+<label>Foto avaliação 2</label>
+
+<input
+type="text"
+class="input"
+id="reviewFoto2"
+/>
+
+</div>
+
+<div class="group">
+<label>Foto avaliação 3</label>
+
+<input
+type="text"
+class="input"
+id="reviewFoto3"
+/>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- REVIEW 2 -->
+
+<div class="card">
+
+<div class="card-title">
+<i class="fa-solid fa-star"></i>
+Avaliação 2
+</div>
+
+<div class="review-box">
+
+<div class="group">
+<label>Nome</label>
+
+<input
+type="text"
+class="input"
+id="reviewNome2"
+/>
+
+</div>
+
+<div class="group">
+<label>Texto</label>
+
+<textarea id="reviewTexto2"></textarea>
+
+</div>
+
+<div class="group">
+<label>Foto avaliação</label>
+
+<input
+type="text"
+class="input"
+id="reviewFoto4"
+/>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<button
+class="save"
+onclick="salvarProduto()">
+
+SALVAR PRODUTO
+
+</button>
+
+<div
+class="status"
+id="status">
+
+Produto salvo com sucesso
+
+</div>
+
+<script>
+
+function salvarProduto(){
+
+const produto = {
+
+/* PRODUTO */
+
+nome:
+document.getElementById("nome").value,
+
+preco:
+document.getElementById("preco").value,
+
+precoAntigo:
+document.getElementById("precoAntigo").value,
+
+vendidos:
+document.getElementById("vendidos").value,
+
+parcelamento:
+document.getElementById("parcelamento").value,
+
+/* FRETE */
+
+freteGratis:
+document.getElementById("freteGratis").checked,
+
+freteCupom:
+document.getElementById("freteCupom").checked,
+
+valorFrete:
+document.getElementById("valorFrete").value,
+
+textoFrete:
+document.getElementById("textoFrete").value,
+
+/* FOTOS */
+
+fotoPrincipal:
+document.getElementById("fotoPrincipal").value,
+
+miniaturas:[
+
+document.getElementById("foto1").value,
+document.getElementById("foto2").value,
+document.getElementById("foto3").value,
+document.getElementById("foto4").value,
+document.getElementById("foto5").value
+
+],
+
+/* CUPONS */
+
+cupom1:
+document.getElementById("cupom1").value,
+
+cupom2:
+document.getElementById("cupom2").value,
+
+/* REVIEWS */
+
+reviews:[
+
+{
+
+nome:
+document.getElementById("reviewNome1").value,
+
+texto:
+document.getElementById("reviewTexto1").value,
+
+fotos:[
+
+document.getElementById("reviewFoto1").value,
+document.getElementById("reviewFoto2").value,
+document.getElementById("reviewFoto3").value
+
+]
+
+},
+
+{
+
+nome:
+document.getElementById("reviewNome2").value,
+
+texto:
+document.getElementById("reviewTexto2").value,
+
+fotos:[
+
+document.getElementById("reviewFoto4").value
+
+]
+
+}
+
+]
+
+};
+
+/* SALVAR */
+
+localStorage.setItem(
+"produtoShopee",
+JSON.stringify(produto)
+);
+
+/* STATUS */
+
+const status =
+document.getElementById("status");
+
+status.style.display = "block";
+
+setTimeout(()=>{
+
+status.style.display = "none";
+
+},2500);
+
+}
+
+</script>
+
+</body>
+</html>

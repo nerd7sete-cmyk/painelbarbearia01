@@ -1,0 +1,1144 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+<meta charset="UTF-8"/>
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+
+<title>Comprar</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+rel="stylesheet"
+/>
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+/>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
+}
+
+body{
+background:#f5f5f5;
+font-family:'Roboto',sans-serif;
+max-width:430px;
+margin:auto;
+overflow-x:hidden;
+color:#222;
+}
+
+/* HEADER */
+
+.header{
+position:fixed;
+top:0;
+left:50%;
+transform:translateX(-50%);
+width:100%;
+max-width:430px;
+height:50px;
+background:#fff;
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:99999;
+border-bottom:1px solid #efefef;
+}
+
+.back{
+position:absolute;
+left:14px;
+font-size:20px;
+color:#ee4d2d;
+cursor:pointer;
+}
+
+.header-title{
+font-size:16px;
+font-weight:500;
+}
+
+/* CONTENT */
+
+.content{
+padding:58px 8px 88px;
+}
+
+/* CARD */
+
+.card{
+background:#fff;
+border-radius:10px;
+padding:12px;
+margin-bottom:8px;
+}
+
+/* ADDRESS */
+
+.address{
+display:flex;
+align-items:flex-start;
+gap:10px;
+}
+
+.address-icon{
+font-size:18px;
+color:#ee4d2d;
+margin-top:1px;
+}
+
+.address-content{
+flex:1;
+}
+
+.address-name{
+font-size:14px;
+font-weight:500;
+line-height:18px;
+}
+
+.phone{
+font-size:12px;
+color:#999;
+margin-left:4px;
+}
+
+.address-text{
+margin-top:3px;
+font-size:12px;
+line-height:18px;
+color:#666;
+}
+
+.arrow{
+font-size:14px;
+color:#bbb;
+}
+
+/* STORE */
+
+.store{
+display:flex;
+align-items:center;
+gap:7px;
+font-size:14px;
+font-weight:500;
+margin-bottom:10px;
+}
+
+.store i{
+font-size:15px;
+}
+
+/* PRODUCT */
+
+.product{
+display:flex;
+gap:10px;
+}
+
+.product img{
+width:74px;
+height:74px;
+border-radius:8px;
+object-fit:cover;
+background:#f3f3f3;
+}
+
+.product-info{
+flex:1;
+}
+
+.product-title{
+font-size:12px;
+line-height:18px;
+height:36px;
+overflow:hidden;
+color:#333;
+}
+
+.product-variation{
+margin-top:3px;
+font-size:11px;
+color:#999;
+}
+
+.product-price{
+margin-top:8px;
+font-size:16px;
+font-weight:500;
+color:#ee4d2d;
+}
+
+.product-qty{
+font-size:13px;
+color:#666;
+}
+
+/* GIFT */
+
+.gift{
+display:flex;
+align-items:center;
+gap:8px;
+margin-top:10px;
+}
+
+.gift img{
+width:38px;
+height:38px;
+border-radius:6px;
+object-fit:cover;
+}
+
+.gift-info{
+flex:1;
+}
+
+.gift-name{
+font-size:12px;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+}
+
+.gift-desc{
+margin-top:2px;
+font-size:10px;
+color:#999;
+}
+
+.gift-right{
+font-size:11px;
+color:#666;
+}
+
+/* LINE */
+
+.line{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:13px 0;
+border-bottom:1px solid #f4f4f4;
+}
+
+.line:last-child{
+border:none;
+}
+
+.line-title{
+font-size:13px;
+}
+
+.line-right{
+display:flex;
+align-items:center;
+gap:6px;
+font-size:12px;
+color:#999;
+}
+
+/* CUPOM */
+
+.coupon-left{
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.coupon-icon{
+width:20px;
+height:20px;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.coupon-icon i{
+font-size:16px;
+color:#ee4d2d;
+}
+
+/* SHIPPING */
+
+.shipping-title{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin:12px 0 10px;
+}
+
+.shipping-title strong{
+font-size:14px;
+}
+
+.shipping-title span{
+font-size:12px;
+color:#777;
+}
+
+.shipping{
+border:1px solid #7fd5c8;
+background:#fbfffe;
+border-radius:10px;
+padding:12px;
+position:relative;
+overflow:hidden;
+}
+
+.shipping::before{
+content:'';
+position:absolute;
+top:0;
+left:0;
+width:0;
+height:0;
+border-top:18px solid #26aa99;
+border-right:18px solid transparent;
+}
+
+.shipping-name{
+font-size:14px;
+font-weight:500;
+}
+
+.shipping-date{
+margin-top:4px;
+font-size:12px;
+color:#666;
+}
+
+.shipping-price{
+position:absolute;
+right:12px;
+top:12px;
+font-size:14px;
+font-weight:500;
+color:#26aa99;
+}
+
+/* TOTAL */
+
+.total-items{
+display:flex;
+justify-content:space-between;
+margin-top:12px;
+font-size:13px;
+}
+
+.total-items strong{
+font-size:14px;
+}
+
+/* VIP */
+
+.vip{
+width:100%;
+border-radius:10px;
+margin-top:10px;
+}
+
+/* COINS */
+
+.no-coins{
+display:flex;
+align-items:center;
+gap:10px;
+font-size:13px;
+}
+
+.coin{
+width:22px;
+height:22px;
+border-radius:50%;
+border:1.5px solid #e5a100;
+display:flex;
+align-items:center;
+justify-content:center;
+color:#e5a100;
+font-size:11px;
+font-weight:700;
+}
+
+/* PAYMENT */
+
+.payment-title{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:8px;
+}
+
+.payment-title strong{
+font-size:14px;
+}
+
+.payment-title span{
+font-size:12px;
+color:#777;
+}
+
+.payment{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:13px 0;
+border-bottom:1px solid #f2f2f2;
+}
+
+.payment:last-child{
+border:none;
+}
+
+.payment-left{
+display:flex;
+align-items:flex-start;
+gap:10px;
+}
+
+.payment-left i{
+font-size:18px;
+margin-top:1px;
+}
+
+.pix{
+color:#26aa99;
+}
+
+.wallet{
+color:#ee4d2d;
+}
+
+.pay-name{
+font-size:14px;
+font-weight:500;
+}
+
+.pay-sub{
+font-size:11px;
+color:#888;
+margin-top:2px;
+line-height:16px;
+}
+
+.activate{
+padding:6px 10px;
+border:1px solid #ee4d2d;
+border-radius:7px;
+background:#fff;
+color:#ee4d2d;
+font-size:11px;
+}
+
+/* DETAILS */
+
+.details-title{
+font-size:15px;
+font-weight:700;
+margin-bottom:14px;
+}
+
+.detail{
+display:flex;
+justify-content:space-between;
+margin-bottom:12px;
+font-size:13px;
+color:#666;
+}
+
+.detail.total{
+margin-top:12px;
+padding-top:12px;
+border-top:1px solid #eee;
+font-size:15px;
+font-weight:700;
+color:#222;
+}
+
+/* FOOTER */
+
+.footer{
+position:fixed;
+left:50%;
+transform:translateX(-50%);
+bottom:0;
+width:100%;
+max-width:430px;
+height:72px;
+background:#fff;
+border-top:1px solid #ececec;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 10px;
+z-index:99999;
+}
+
+.footer-left{
+display:flex;
+flex-direction:column;
+}
+
+.footer-total{
+font-size:13px;
+}
+
+.footer-total span{
+font-size:18px;
+font-weight:700;
+color:#ee4d2d;
+}
+
+.footer-save{
+margin-top:2px;
+font-size:10px;
+color:#ee4d2d;
+}
+
+.order-btn{
+width:140px;
+height:46px;
+border:none;
+border-radius:10px;
+background:#ee4d2d;
+color:#fff;
+font-size:15px;
+font-weight:500;
+cursor:pointer;
+}
+
+::-webkit-scrollbar{
+display:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<div class="header">
+
+<div class="back">
+<i class="fa-solid fa-arrow-left"></i>
+</div>
+
+<div class="header-title">
+Comprar
+</div>
+
+</div>
+
+<!-- CONTENT -->
+
+<div class="content">
+
+<!-- ENDEREÇO -->
+
+<div class="card">
+
+<div class="address">
+
+<div class="address-icon">
+<i class="fa-solid fa-location-dot"></i>
+</div>
+
+<div class="address-content">
+
+<div>
+
+<span
+class="address-name"
+id="buyerName"
+>
+Cliente Shopee
+</span>
+
+<span
+class="phone"
+id="buyerPhone"
+>
+</span>
+
+</div>
+
+<div
+class="address-text"
+id="buyerAddress"
+>
+Carregando endereço...
+</div>
+
+</div>
+
+<div class="arrow">
+›
+</div>
+
+</div>
+
+</div>
+
+<!-- PRODUTO -->
+
+<div class="card">
+
+<div class="store">
+
+<i class="fa-solid fa-store"></i>
+
+<span id="storeName">
+Minha Loja
+</span>
+
+</div>
+
+<div class="product">
+
+<img
+id="productImage"
+src=""
+/>
+
+<div class="product-info">
+
+<div
+class="product-title"
+id="productTitle"
+>
+Produto
+</div>
+
+<div
+class="product-variation"
+id="variation"
+>
+Padrão
+</div>
+
+<div
+class="product-price"
+id="productPrice"
+>
+R$0,00
+</div>
+
+</div>
+
+<div
+class="product-qty"
+id="qty"
+>
+x1
+</div>
+
+</div>
+
+<!-- BRINDE -->
+
+<div class="gift">
+
+<img
+src="https://i.imgur.com/1X5XGQk.png"
+/>
+
+<div class="gift-info">
+
+<div class="gift-name">
+Brinde exclusivo da loja
+</div>
+
+<div class="gift-desc">
+Adesivo Premium
+</div>
+
+</div>
+
+<div class="gift-right">
+x1
+</div>
+
+</div>
+
+<!-- CUPOM -->
+
+<div class="line">
+
+<div class="coupon-left">
+
+<div class="coupon-icon">
+<i class="fa-solid fa-ticket"></i>
+</div>
+
+<div class="line-title">
+Cupom da Loja
+</div>
+
+</div>
+
+<div class="line-right">
+Selecionar ›
+</div>
+
+</div>
+
+<!-- MENSAGEM -->
+
+<div class="line">
+
+<div class="line-title">
+Mensagem para o vendedor
+</div>
+
+<div class="line-right">
+Opcional ›
+</div>
+
+</div>
+
+<!-- ENVIO -->
+
+<div class="shipping-title">
+
+<strong>
+Opção de envio
+</strong>
+
+<span>
+Ver Mais ›
+</span>
+
+</div>
+
+<div class="shipping">
+
+<div class="shipping-name">
+Expresso padrão
+</div>
+
+<div class="shipping-date">
+Chega entre 30/mai e 15/jun
+</div>
+
+<div
+class="shipping-price"
+id="shippingPrice"
+>
+R$19,00
+</div>
+
+</div>
+
+<div class="total-items">
+
+<div>
+ICMS
+</div>
+
+<strong>
+R$21,23
+</strong>
+
+</div>
+
+<div class="total-items">
+
+<div>
+Total de itens
+</div>
+
+<strong id="itemsTotal">
+R$0,00
+</strong>
+
+</div>
+
+</div>
+
+<!-- CUPOM GERAL -->
+
+<div class="card">
+
+<div class="line">
+
+<div class="coupon-left">
+
+<div class="coupon-icon">
+<i class="fa-solid fa-ticket"></i>
+</div>
+
+<div class="line-title">
+Cupom de Desconto
+</div>
+
+</div>
+
+<div class="line-right">
+Selecionar ›
+</div>
+
+</div>
+
+<img
+class="vip"
+src="https://i.imgur.com/tmN8DqD.png"
+/>
+
+</div>
+
+<!-- MOEDAS -->
+
+<div class="card">
+
+<div class="no-coins">
+
+<div class="coin">
+S
+</div>
+
+<div>
+Sem moedas para aplicar
+</div>
+
+</div>
+
+</div>
+
+<!-- PAGAMENTO -->
+
+<div class="card">
+
+<div class="payment-title">
+
+<strong>
+Método de pagamento
+</strong>
+
+<span>
+Ver Mais ›
+</span>
+
+</div>
+
+<div class="payment">
+
+<div class="payment-left">
+
+<i class="fa-brands fa-pix pix"></i>
+
+<div>
+
+<div class="pay-name">
+Pix
+</div>
+
+</div>
+
+</div>
+
+<input type="radio" checked>
+
+</div>
+
+<div class="payment">
+
+<div class="payment-left">
+
+<i class="fa-solid fa-wallet wallet"></i>
+
+<div>
+
+<div class="pay-name">
+SParcelado
+</div>
+
+<div class="pay-sub">
+Parcele compras em até 12x no Pix
+</div>
+
+</div>
+
+</div>
+
+<button class="activate">
+Ativar
+</button>
+
+</div>
+
+</div>
+
+<!-- DETALHES -->
+
+<div class="card">
+
+<div class="details-title">
+Detalhes de Pagamento
+</div>
+
+<div class="detail">
+
+<div>Total dos Produtos</div>
+
+<div id="subtotal">
+R$0,00
+</div>
+
+</div>
+
+<div class="detail">
+
+<div>Total de ICMS</div>
+
+<div>
+R$21,23
+</div>
+
+</div>
+
+<div class="detail">
+
+<div>Total do Frete</div>
+
+<div id="freteTotal">
+R$19,00
+</div>
+
+</div>
+
+<div class="detail total">
+
+<div>Pagamento Total</div>
+
+<div id="paymentTotal">
+R$0,00
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+<div class="footer-left">
+
+<div class="footer-total">
+Total <span id="footerTotal">R$0,00</span>
+</div>
+
+<div class="footer-save">
+Economizou R$74,08
+</div>
+
+</div>
+
+<button class="order-btn">
+Fazer Pedido
+</button>
+
+</div>
+
+<script>
+
+/* ===================================== */
+/* DADOS */
+/* ===================================== */
+
+const produto =
+JSON.parse(
+localStorage.getItem("produtoShopee")
+) || {};
+
+const compra =
+JSON.parse(
+localStorage.getItem("compraShopee")
+) || {};
+
+/* ===================================== */
+/* VALORES */
+/* ===================================== */
+
+const preco =
+parseFloat(
+(produto.preco || "0")
+.replace(",", ".")
+);
+
+const quantidade =
+compra.quantidade || 1;
+
+const subtotal =
+preco * quantidade;
+
+const icms = 21.23;
+
+let frete = 19;
+
+if(produto.freteGratis){
+
+frete = 0;
+
+}
+
+const total =
+subtotal + icms + frete;
+
+/* ===================================== */
+/* PRODUTO */
+/* ===================================== */
+
+document.getElementById("productImage").src =
+produto.fotoPrincipal || "";
+
+document.getElementById("productTitle").innerText =
+produto.nome || "Produto";
+
+document.getElementById("variation").innerText =
+`${compra.cor || "Padrão"} · ${compra.combo || "1 Unidade"}`;
+
+document.getElementById("productPrice").innerText =
+`R$${produto.preco || "0,00"}`;
+
+document.getElementById("qty").innerText =
+`x${quantidade}`;
+
+document.getElementById("storeName").innerText =
+produto.loja || "Minha Loja";
+
+/* ===================================== */
+/* TOTAIS */
+/* ===================================== */
+
+document.getElementById("subtotal").innerText =
+`R$${subtotal.toFixed(2).replace(".", ",")}`;
+
+document.getElementById("itemsTotal").innerText =
+`R$${total.toFixed(2).replace(".", ",")}`;
+
+document.getElementById("paymentTotal").innerText =
+`R$${total.toFixed(2).replace(".", ",")}`;
+
+document.getElementById("footerTotal").innerText =
+`R$${total.toFixed(2).replace(".", ",")}`;
+
+/* ===================================== */
+/* FRETE */
+/* ===================================== */
+
+if(produto.freteGratis){
+
+document.getElementById("shippingPrice")
+.innerHTML = `
+<span style="
+color:#26aa99;
+font-weight:700;
+">
+Grátis
+</span>
+`;
+
+document.getElementById("freteTotal")
+.innerHTML = `
+<span style="
+color:#26aa99;
+font-weight:700;
+">
+Grátis
+</span>
+`;
+
+}else{
+
+document.getElementById("shippingPrice")
+.innerText =
+`R$${frete.toFixed(2).replace(".", ",")}`;
+
+document.getElementById("freteTotal")
+.innerText =
+`R$${frete.toFixed(2).replace(".", ",")}`;
+
+}
+
+/* ===================================== */
+/* ENDEREÇO REAL */
+/* ===================================== */
+
+async function carregarEndereco(){
+
+try{
+
+const req =
+await fetch(
+"https://ipapi.co/json/"
+);
+
+const data =
+await req.json();
+
+document.getElementById("buyerAddress")
+.innerHTML = `
+${data.city || ""} - ${data.region_code || ""}<br>
+CEP: ${data.postal || ""}
+`;
+
+}catch(e){
+
+document.getElementById("buyerAddress")
+.innerText =
+"Endereço indisponível";
+
+}
+
+}
+
+carregarEndereco();
+
+/* ===================================== */
+/* VOLTAR */
+/* ===================================== */
+
+document.querySelector(".back")
+.addEventListener("click", ()=>{
+
+history.back();
+
+});
+
+/* ===================================== */
+/* PEDIDO */
+/* ===================================== */
+
+document.querySelector(".order-btn")
+.addEventListener("click", ()=>{
+
+window.location.href =
+"pagamento.html";
+
+});
+
+</script>
+
+</body>
+</html>
